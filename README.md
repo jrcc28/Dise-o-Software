@@ -1,2 +1,35 @@
 # Dise-o-Software
 Proyecto de Diseño de Software, familia de juegos de estrategia, basado en Othello.
+
+Integrantes:
+Jose Rodolfo Calvo
+Roger Chacon
+Esteban Gonzalez
+Andres Davidovich
+
+Familia juegos de estrategia, basado en Othello.
+
+Para cada entrega: Completitud de las HU planeadas, Depuración del código.
+
+1era Etapa J/23-Mayo - D/26, Historias de Usuario:
+Como jugador novato requiero poder consultar las reglas del juego en cualquier
+momento. 
+Como jugador requiero escoger al principio del juego con cuál de los posibles colores de
+pieza voy a jugar y por ende mi adversario. 
+Como jugador requiero observar todas mis piezas y las de mi adversario durante todo el 
+juego para escoger la mejor jugada en cada momento.
+
+2era Etapa J/13-Junio - D/16, Historias de Usuario:
+Como jugador requiero se impidan a mi y a mi advesario jugadas que no respeten las 
+reglas.
+Como jugador requiero se muestre continuamente la piezas que he perdido para valorar 
+mi posición en el juego.  
+Como jugador requiero se muestren las posibles posiciones a que puede moverse la pieza
+ que he seleccionado para poder anticipar posibles errores.
+
+3era Etapa J/4-Julio - D/7, Historias de Usuario:
+Como jugador requiero cargar una partida previamente guardada para reiniciarla.  
+Como jugador requiero guardar una partida para continuarla posteriormente.
+Como jugador requiero se indique cuándo el juego ha terminado para mi o mi adversario.
+
+Ultima entrega 14/Julio: los tres componentes del diseño indicados previamente.

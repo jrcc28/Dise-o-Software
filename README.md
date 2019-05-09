@@ -7,7 +7,17 @@ Roger Chacon
 Esteban Gonzalez
 Andres Davidovich
 
+
 Familia juegos de estrategia, basado en Othello.
+Caracteristicas en comun:
+1. el espacio de juego es bidimensional, un tablero
+2. cada jugador cuenta con un conjunto de piezas con diferentes reglas de movimiento,
+3. no interviene el azar en ninguna regla del juego,
+4. las piezas originales, bajo determinadas condiciones, pueden ser promovidas ganando mayor
+potencia de juego,
+5. la estrategia de un jugador se basa en la capacidad de visualizar largas series de combinaciones
+de jugadas,
+6. la mayoría son para dos jugadores.
 
 Para cada entrega: Completitud de las HU planeadas, Depuración del código.
 

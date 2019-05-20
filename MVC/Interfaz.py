@@ -2,15 +2,19 @@
 # -*- coding: latin-1 -*-
 import time
 import pygame
+from Controlador import Controlador
 
 class Interfaz:
-    def __init__(self):
+    def __init__(self, controlador):
+        self.controlador = controlador
+
         pygame.init()
         #sprites
         self.fondo = pygame.image.load('images/fondo.jpg')
         self.board = pygame.image.load('images/board.bmp')
         self.whiteToken = pygame.image.load('images/blanca.bmp')
         self.blackToken = pygame.image.load('images/negra.bmp')
+        self.availableToken = pygame.image.load('images/posible.jpg')
 
         #window
         self.win = pygame.display.set_mode((900, 700))
@@ -28,12 +32,16 @@ class Interfaz:
         self.bright_white = (200, 200, 200)
         self.bright_black = (70,70,70)
         self.grey = (128,128,128)
-        #posiciones del tablero
+
+        #posiciones del tablero y tamanos
         self.cuadro = 50
         self.borde = 20
         self.tableroPos = 30
-        #primerJugador, 1 es negra por reglas empieza primero, 2 es blancaas
+        self.BOARD_SIZE = 400
+
+        #primerJugador, 1 es negra por reglas empieza primero, 2 es blancas
         self.primero = 1
+        self.turno = 1
         self.clock = pygame.time.Clock()
 
     #para mostrar texto
@@ -66,7 +74,7 @@ class Interfaz:
             self.win.blit(self.fondo,(0,0))
             self.message_display("El objetivo del juego es tener mas fichas del propio color.",450,10,self.white,20)
             self.message_display("De inicio se colocan cuatro fichas como en el diagrama.",450,40,self.white,20)
-            self.message_display("Dos fichas blancas en D4 y E5, y dos negras en E4 y D.",450,70,self.white,20)
+            self.message_display("Dos fichas blancas en D4 y E5, y dos negras en E4 y D5.",450,70,self.white,20)
             self.message_display("Comienzan a mover las negras. Un movimiento consiste",450,100,self.white,20)
             self.message_display("en colocar una ficha propia sobre el tablero de",450,130,self.white,20)
             self.message_display("forma que flanquee' una o varias fichas contrarias.",450,160,self.white,20)
@@ -89,34 +97,72 @@ class Interfaz:
             pygame.display.update()
             self.win.blit(self.fondo,(0,0))
 
-    #este metodo puede ser mostrar tablero
-    def motrar_tablero(self):
+    def convertir_pos(self,mouse_x ,mouse_y ):
+        # click was out of board, ignores
+        if mouse_x > self.BOARD_SIZE + 50 or \
+            mouse_x < 50 or \
+            mouse_y > self.BOARD_SIZE + 50 or \
+            mouse_y < 50:
+            position = (-1,-1)
+            return position
+
+        # find place
+        position = ((mouse_x - 50) // self.cuadro),((mouse_y - 50) // self.cuadro)
+        # flip orientation
+        position = (position[1], position[0])
+        continar = False
+        return position
+
+    def mostrar_tablero(self):
         jugar=True
         while jugar:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
-
-
-                if event.type == pygame.KEYDOWN:
+                elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_BACKSPACE:
                         jugar = False
                         self.win.blit(self.fondo,(0,0))
+                elif event.type == pygame.MOUSEBUTTONUP:
+                    pos = pygame.mouse.get_pos()
+                    pos_valida = self.convertir_pos(pos[0],pos[1])
 
-            #se muestra el tablero
+                    if self.turno==1:
+                        print "Turno fichas negras."
+                    elif self.turno==2:
+                        print "Turno fichas blancas."
+
+                    #esto es para colocar alguna ficha en el tablero
+                    if self.primero==1 and pos_valida!=(-1,-1):#si el jugador es ficha negra
+                        if self.controlador.set_ficha(pos_valida[0],pos_valida[1],1):#si se logro colocar la ficha
+                            self.primero = 2 # ahora pasa a ser la ficha blanca
+                            self.turno = 2
+                    elif self.primero==2  and pos_valida!=(-1,-1):#si el jugador es ficha blanca
+                        if self.controlador.set_ficha(pos_valida[0],pos_valida[1],2):#si se logro colocar la ficha
+                            self.primero = 1 # ahora pasa a ser la ficha negra
+                            self.turno = 1
+
+            #se muestra el fondo
             self.win.blit(self.fondo,(0,0))
+            #se muestran botones
             self.button("Ver Reglas",490,30,150,100,self.bright_blue, self.blue, self.black, self.ver_reglas)
             self.button("Para Volver presione BACKSPACE",490,160,300,100,self.red, self.red, self.black, self.salir)
+            #se muestra el tablero
             self.win.blit(self.board,(30,30))
-    		#colocar fichas
-            self.win.blit(self.blackToken,((self.cuadro*3)+self.tableroPos+self.borde,(self.cuadro*3)+self.tableroPos+self.borde))
-            self.win.blit(self.blackToken,((self.cuadro*4)+self.tableroPos + self.borde,(self.cuadro*4)+self.tableroPos + self.borde))
-            self.win.blit(self.whiteToken,((self.cuadro*3)+self.tableroPos+self.borde,(self.cuadro*4)+self.tableroPos+self.borde))
-            self.win.blit(self.whiteToken,((self.cuadro*4)+self.tableroPos + self.borde,(self.cuadro*3)+self.tableroPos + self.borde))
+
+    		#colocar fichas sobre tablero
+            tablero = self.controlador.get_tablero()
+            for fila in range(8):
+                for colunm in range(8):
+                    if tablero[fila][colunm] == 1:
+                        self.win.blit(self.blackToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
+                    elif tablero[fila][colunm] == 2:
+                        self.win.blit(self.whiteToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
+                    elif tablero[fila][colunm] == 3:
+                        self.win.blit(self.availableToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
 
             pygame.display.update()
 
-    #falta por definir
     def elegir_color(self):
         escoger=True
         while escoger:
@@ -188,7 +234,7 @@ class Interfaz:
             #botones de las opciones
             self.button("Ver Reglas",640,400,170,100, self.bright_blue, self.blue, self.black, self.ver_reglas)
             self.button("Elegir Color",40,400,170,100, self.bright_green, self.green,self.black, self.elegir_color)
-            self.button("Jugar", 340,400,170,100, self.bright_red, self.red, self.black, self.motrar_tablero)
+            self.button("Jugar", 340,400,170,100, self.bright_red, self.red, self.black, self.mostrar_tablero)
             pygame.display.update()
             self.clock.tick(15)
 

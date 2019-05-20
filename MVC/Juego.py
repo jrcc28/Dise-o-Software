@@ -2,6 +2,7 @@
 
 class Game:
     def __init__(self):
+        
         self.board = [[0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 0, 0, 0, 0],
             [0, 0, 0, 0, 3, 0, 0, 0],
@@ -18,6 +19,8 @@ class Game:
         return self.board
 
     def set_ficha(self, fila, columna, valor):
+		#calcular posiciones validas aca y luego colocar ficha
+		
         #solo se permite en posiciones validas
         if self.board[fila][columna] == 3:
             self.board[fila][columna] = valor

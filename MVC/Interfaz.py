@@ -85,7 +85,7 @@ class Interfaz:
             self.message_display("sobre el tablero Es posible el empate.",450,550,self.white,20)
             self.message_display("Disfruta el Juego",450,600,self.white,40)
             ##
-            self.button("Para Volver presion BACKSPACE",290,630,300,50,self.red, self.red, self.black, self.salir)
+            self.button("Para Volver presione BACKSPACE",290,630,300,50,self.red, self.red, self.black, self.salir)
             pygame.display.update()
             self.win.blit(self.fondo,(0,0))
 
@@ -106,7 +106,7 @@ class Interfaz:
             #se muestra el tablero
             self.win.blit(self.fondo,(0,0))
             self.button("Ver Reglas",490,30,150,100,self.bright_blue, self.blue, self.black, self.ver_reglas)
-            self.button("Para Volver presion BACKSPACE",490,160,300,100,self.red, self.red, self.black, self.salir)
+            self.button("Para Volver presione BACKSPACE",490,160,300,100,self.red, self.red, self.black, self.salir)
             self.win.blit(self.board,(30,30))
     		#colocar fichas
             self.win.blit(self.blackToken,((self.cuadro*3)+self.tableroPos+self.borde,(self.cuadro*3)+self.tableroPos+self.borde))
@@ -130,7 +130,7 @@ class Interfaz:
                         self.win.blit(self.fondo,(0,0))
 
             self.win.blit(self.fondo,(0,0))
-            self.button("Para Volver presion BACKSPACE",300,500,300,100, self.red, self.red, self.black, self.salir)
+            self.button("Para Volver presione BACKSPACE",300,500,300,100, self.red, self.red, self.black, self.salir)
             self.button("Negras",340,300,170,100, self.bright_black, self.grey ,self.white, self.elegir_negras)
             self.button("Blancas", 340,100,170,100, self.bright_white, self.white ,self.black, self.elegir_blancas)
             pygame.display.update()

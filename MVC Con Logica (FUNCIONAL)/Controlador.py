@@ -21,7 +21,9 @@ class Controlador:
         return self.game.get_tablero()
 
 
-				
+    def reset(self):
+        self.game.clean_game()
+
     def jugar_turno(self,x,y):
         mov=0
         pos_valida = self.convertir_pos(x,y)

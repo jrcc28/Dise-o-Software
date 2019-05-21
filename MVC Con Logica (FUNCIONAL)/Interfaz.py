@@ -106,22 +106,23 @@ class Interfaz:
             self.win.blit(self.fondo,(0,0))
             #se muestran botones
             self.button("Ver Reglas",490,30,150,100,self.bright_blue, self.blue, self.black, self.ver_reglas)
-            self.button("Para Volver presione BACKSPACE",490,160,300,100,self.red, self.red, self.black, self.salir)
+            self.button("Para Volver presione BACKSPACE",490,290,300,100,self.red, self.red, self.black, self.salir)
+            self.button("Guardar Partida",490,160,150,100,self.bright_green, self.green, self.black, self.guardar_partida)
 
             if seguir:
                 if self.controlador.get_turno() == 1:
-                    self.message_display("Turno de las negras.",590,290,self.white,20)
+                    self.message_display("Turno de las negras.",590,420,self.white,20)
                 elif self.controlador.get_turno() == 2:
-                    self.message_display("Turno de las blancas.",590,290,self.white,20)
+                    self.message_display("Turno de las blancas.",590,420,self.white,20)
             else:
                 if self.controlador.get_num_negras()> self.controlador.get_num_blancas():
-                    self.message_display("Ganaron las Negras!!!!!",590,290,self.white,20)
+                    self.message_display("Ganaron las Negras!!!!!",590,420,self.white,20)
 
                 if self.controlador.get_num_negras()< self.controlador.get_num_blancas():
-        	        self.message_display("Ganaron las Blancas!!!!!",590,290,self.white,20)
+        	        self.message_display("Ganaron las Blancas!!!!!",590,420,self.white,20)
 
                 if self.controlador.get_num_negras()== self.controlador.get_num_blancas():
-        	        self.message_display("Empate!!!!!",590,290,self.white,20)
+        	        self.message_display("Empate!!!!!",590,420,self.white,20)
 
 
 				
@@ -142,7 +143,38 @@ class Interfaz:
             pygame.display.update()
 
 
-       
+    
+    def cargar_partida(self):
+        print("cargo")
+        self.mostrar_tablero()
+
+    def partida_nueva(self):
+        self.controlador.reset()
+        self.mostrar_tablero()
+
+    def guardar_partida(self):
+        print("guardo")
+
+
+    def opciones_juego(self):
+        escoger=True
+        while escoger:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_BACKSPACE:
+                        escoger = False
+                        self.win.blit(self.fondo,(0,0))
+
+            self.win.blit(self.fondo,(0,0))
+            self.button("Para Volver presione BACKSPACE",280,500,300,100, self.red, self.red, self.black, self.salir)
+            self.button("Cargar Partida",340,300,170,100, self.bright_black, self.grey ,self.white, self.cargar_partida)
+            self.button("Nueva Partida", 340,100,170,100, self.bright_white, self.white ,self.black, self.partida_nueva)
+            pygame.display.update()
+
+
 
 
     def elegir_color(self):
@@ -158,7 +190,7 @@ class Interfaz:
                         self.win.blit(self.fondo,(0,0))
 
             self.win.blit(self.fondo,(0,0))
-            self.button("Para Volver presione BACKSPACE",300,500,300,100, self.red, self.red, self.black, self.salir)
+            self.button("Para Volver presione BACKSPACE",280,500,300,100, self.red, self.red, self.black, self.salir)
             self.button("Negras",340,300,170,100, self.bright_black, self.grey ,self.white, self.elegir_negras)
             self.button("Blancas", 340,100,170,100, self.bright_white, self.white ,self.black, self.elegir_blancas)
             pygame.display.update()
@@ -216,7 +248,7 @@ class Interfaz:
             #botones de las opciones
             self.button("Ver Reglas",640,400,170,100, self.bright_blue, self.blue, self.black, self.ver_reglas)
             self.button("Elegir Color",40,400,170,100, self.bright_green, self.green,self.black, self.elegir_color)
-            self.button("Jugar", 340,400,170,100, self.bright_red, self.red, self.black, self.mostrar_tablero)
+            self.button("Jugar", 340,400,170,100, self.bright_red, self.red, self.black, self.opciones_juego)
             pygame.display.update()
             self.clock.tick(15)
 

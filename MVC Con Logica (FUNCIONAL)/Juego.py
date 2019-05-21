@@ -31,7 +31,21 @@ class Game:
     def get_mover_blancas(self):
         return self.mover_blanca
 
+    def clean_game(self):
+        self.board = [[0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 3, 0, 0, 0],
+            [0, 0, 0, 1, 2, 3, 0, 0],
+            [0, 0, 3, 2, 1, 0, 0, 0],
+            [0, 0, 0, 3, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0, 0, 0, 0]]
+        self.mover_negra=True
+        self.mover_blanca=True
+        self.num_negras=2
+        self.num_blancas=2
 
+                
     def get_tablero(self):
         return self.board
 

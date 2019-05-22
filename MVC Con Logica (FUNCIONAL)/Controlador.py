@@ -23,34 +23,27 @@ class Controlador:
 
     def reset(self):
         self.game.clean_game()
+        self.turno=1
 
     def jugar_turno(self,x,y):
-        mov=0
         pos_valida = self.convertir_pos(x,y)
         #esto es para colocar alguna ficha en el tablero(matriz) debe ser una posicion valida
         if self.turno==1 and pos_valida!=(-1,-1):#si el jugador es ficha negra
-            if self.game.set_ficha(pos_valida[0],pos_valida[1],1):#si se logro colocar la ficha
-                mov=1
-                
+            if self.game.set_ficha(pos_valida[0],pos_valida[1],1):#si se logro colocar la ficha         
                 self.set_turno(2) # ahora pasa a ser la ficha blanca
-                if not self.game.cambiar_turno(2): 
-                    mov=2
-
-                
-            
-
+                self.game.cambiar_turno(2)
+                    
         elif self.turno==2 and pos_valida!=(-1,-1):#si el jugador es ficha blanca
            
             if self.game.set_ficha(pos_valida[0],pos_valida[1],2):#si se logro colocar la ficha
-                mov=1
       
                 self.set_turno(1)
-                if not self.game.cambiar_turno(1): 
-                    mov=2
+                self.game.cambiar_turno(1)
+                   
           
 
         
-        return mov
+    
        
 
 

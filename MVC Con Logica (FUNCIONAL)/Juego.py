@@ -65,11 +65,11 @@ class Game:
   
         if self.board[fila][columna] == 3:
             self.board[fila][columna] = valor
-            if valor==2:
+            if valor==1:
                 self.num_negras= self.num_negras + 1
 
 
-            elif valor==1:
+            elif valor==2:
                 self.num_blancas= self.num_blancas + 1     
 			
             return True
@@ -83,11 +83,11 @@ class Game:
 
     def cambiar_turno(self,valor):
         if self.get_valid_moves(valor)==[] and self.num_blancas+self.num_negras==64: 
-            if valor==2:
+            if valor==1:
                 self.mover_negra=False
 
 
-            elif valor==1:
+            elif valor==2:
                 self.mover_blanca=False
 
             return False

@@ -53,10 +53,47 @@ class Game:
         for i in range(8):
             for j in range(8):
                 if self.board[i][j] == 3:
-                    print(self.board)
-                    return True
-        print(self.board)
+                    return True  
         return False
+
+
+    def get_estado_juego(self,turno):
+        estado = [[0,0,0,0,0]]
+        estado[0][0]=self.num_negras
+        estado[0][1]=self.num_blancas
+        estado[0][2]=turno
+        if self.mover_negra:
+            estado[0][3]=1
+        else:
+            estado[0][3]=0
+
+        if self.mover_blanca:
+            estado[0][4]=1
+        else:
+            estado[0][4]=0
+
+        return estado
+
+    def llenar_tablero(self,row,i):
+    	for j in range(8):
+    	    self.board[i][j]=int(row[j])
+           	   
+    def llenar_fichas(self,row):
+        self.num_negras=int(row[0])
+        self.num_blancas=int(row[1])
+
+        if int(row[3])==1:
+            self.mover_negra=True
+        else:
+            self.mover_negra=False
+
+        if int(row[4])==1:
+            self.mover_blanca=True
+        else:
+            self.mover_blanca=0
+
+        return int(row[2])
+         
 
 
 
@@ -95,12 +132,8 @@ class Game:
         return True
 
 		
-    def lookup(self, fila, columna, color):
-        """Returns the possible positions that there exists at least one
-        straight (horizontal, vertical, or diagonal) line between the
-        piece specified by (fila, columna, color) and another piece of
-        the same color.
-        """
+    def escanear_pos(self, fila, columna, color):
+        
         if color == 1:
             other = 2
         else:
@@ -111,7 +144,7 @@ class Game:
         if (fila < 0 or fila > 7 or columna < 0 or columna > 7):
             return places
 
-    # For each direction search for possible positions to put a piece.
+   
 
         # north
         i = fila - 1
@@ -201,12 +234,7 @@ class Game:
 		
 		
     def get_valid_moves(self, color):
-        """Get the avaiable positions to put a piece of the given color. For
-        each piece of the given color we search its neighbours,
-        searching for pieces of the other color to determine if is
-        possible to make a move. This method must be called before
-        apply_move.
-        """
+        
 
         if color == 1:
             other = 2
@@ -218,7 +246,7 @@ class Game:
         for i in range(8):
             for j in range(8):
                 if self.board[i][j] == color:
-                    places = places + self.lookup(i, j, color)
+                    places = places + self.escanear_pos(i, j, color)
                 if self.board[i][j]==3:
                     self.board[i][j]=0
 				    

@@ -129,15 +129,20 @@ class Interfaz:
             #se muestra el tablero
             self.win.blit(self.board,(30,30))
 
-    		#colocar fichas sobre tablero(imagen)
+            #colocar fichas sobre tablero(imagen
+            #print(self.controlador.get_tablero())
             tablero = self.controlador.get_tablero()
+            #print(tablero)
             for fila in range(8):
                 for colunm in range(8):
                     if tablero[fila][colunm] == 1:
+                        
                         self.win.blit(self.blackToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
                     elif tablero[fila][colunm] == 2:
+                        
                         self.win.blit(self.whiteToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
                     elif tablero[fila][colunm] == 3:
+                        
                         self.win.blit(self.availableToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
 
             pygame.display.update()
@@ -145,15 +150,17 @@ class Interfaz:
 
     
     def cargar_partida(self):
-        print("cargo")
+        self.controlador.leer_archivo("prueba.csv")
         self.mostrar_tablero()
+
 
     def partida_nueva(self):
         self.controlador.reset()
         self.mostrar_tablero()
 
     def guardar_partida(self):
-        print("guardo")
+        self.controlador.crear_archivo("prueba.csv")
+
 
 
     def opciones_juego(self):

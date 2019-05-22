@@ -1,7 +1,9 @@
 from Interfaz import *
 from Juego import *
+import csv
 #to windows compile: py -m pip install -U pygame --user 
 #windows use: >py -m Controlador
+
 class Controlador:
     def __init__(self):
         self.game = Game()
@@ -19,6 +21,35 @@ class Controlador:
 
     def get_tablero(self):
         return self.game.get_tablero()
+    #por el momento solo csv
+    def leer_archivo(self, name):
+       count_info=0
+       count_lineas=1
+       with open(name , newline='') as File:  
+           reader = csv.reader(File)
+           for row in reader:
+               if count_lineas % 2!=0:
+                   if count_info < 8 :
+                       self.game.llenar_tablero(row,count_info)
+                   else:
+                       self.turno=self.game.llenar_fichas(row)
+                 
+                   count_info=count_info+1
+
+               count_lineas=count_lineas+1
+                   
+
+
+    #por el momento solo csv
+    def crear_archivo(self, name):
+        myFile = open(name, 'w')
+        with myFile:
+            writer = csv.writer(myFile)
+            writer.writerows(self.game.get_tablero())
+            writer.writerows(self.game.get_estado_juego(self.turno))
+
+     
+       
 
 
     def reset(self):

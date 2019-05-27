@@ -2,10 +2,10 @@
 Proyecto de Diseño de Software, familia de juegos de estrategia, basado en Othello.
 
 Integrantes:
-Jose Rodolfo Calvo
-Roger Chacon
-Esteban Gonzalez
-Andres Davidovich
+Jose Rodolfo Calvo - B78708 
+Roger Chacon - B72025 
+Esteban Gonzalez - B73404 
+Andres Davidovich - B52321 
 
 
 Familia juegos de estrategia, basado en Othello.

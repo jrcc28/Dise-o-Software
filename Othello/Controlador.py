@@ -61,13 +61,17 @@ class Controlador:
             if self.game.set_ficha(pos_valida[0],pos_valida[1],1):#si se logro colocar la ficha
                 self.set_turno(2) # ahora pasa a ser la ficha blanca
                 self.game.cambiar_turno(2)
-
+                if not self.game.hay_posiciones():
+                    self.set_turno(1)
+                    self.game.cambiar_turno(1)
         elif self.turno==2 and pos_valida!=(-1,-1):#si el jugador es ficha blanca
-
             if self.game.set_ficha(pos_valida[0],pos_valida[1],2):#si se logro colocar la ficha
-
                 self.set_turno(1)
                 self.game.cambiar_turno(1)
+                if not self.game.hay_posiciones():
+                    self.set_turno(2)
+                    self.game.cambiar_turno(2)
+				    
 
     def setNombreJugador1(self,nombre):
         self.nombreJugador1 = nombre

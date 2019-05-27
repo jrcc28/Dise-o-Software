@@ -181,19 +181,21 @@ class Game:
             return True
 		
         
-
+        if not self.hay_posiciones():
+            return True
+			
         return False
 		    
 			#calcular posiciones validas aca
 			
 
     def cambiar_turno(self,valor):
-        if self.get_valid_moves(valor)==[] and self.num_blancas+self.num_negras==64: 
+        if self.get_valid_moves(valor)==[] or self.num_blancas+self.num_negras==64: 
             if valor==1:
                 self.mover_negra=False
 
 
-            elif valor==2:
+            else:
                 self.mover_blanca=False
 
             return False

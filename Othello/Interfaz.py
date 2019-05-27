@@ -105,9 +105,6 @@ class Interfaz:
         jugar=True
         seguir=True
         while jugar:
-            if not self.controlador.get_mover_negras() or not self.controlador.get_mover_blancas():
-                seguir=False
-
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -115,11 +112,13 @@ class Interfaz:
                     if event.key == pygame.K_ESCAPE:
                         jugar = False
                         self.win.blit(self.fondo,(0,0))
-                elif event.type == pygame.MOUSEBUTTONUP and seguir:
+                elif event.type == pygame.MOUSEBUTTONUP:
                     pos = pygame.mouse.get_pos()
                     self.controlador.jugar_turno(pos[0],pos[1])
+                    
 
-
+            if not self.controlador.get_mover_negras() and not self.controlador.get_mover_blancas():
+                seguir=False
             #se muestra el fondo
             textj1= "Fichas de "
             textj2= "Fichas de "
@@ -133,7 +132,7 @@ class Interfaz:
             self.message_display(textj1 + ":  " +str(self.controlador.get_num_negras()),590,470,self.white,20)
             self.message_display(textj2 + ":  "+str(self.controlador.get_num_blancas()),590,520,self.white,20)
             text = "Turno de "
-            ganador = "Gano "
+            ganador = "Gano "  
             if seguir:
                 if self.controlador.get_turno() == 1:
                     text += self.controlador.getNombreJugador1()
@@ -259,8 +258,10 @@ class Interfaz:
             self.win.blit(self.fondo,(0,0))
             self.win.blit(txt_surface1,(535,90))
             self.win.blit(txt_surface2,(535,190))
-            pygame.draw.rect(self.win, self.white,rect1,2)
-            pygame.draw.rect(self.win, self.white,rect2,2)
+            self.name_button("",530, 85, 200, 32, self.button_guardar_press, self.button_guardar, self.black)
+            self.name_button("",530, 185, 200, 32, self.button_guardar_press, self.button_guardar, self.black)
+            #pygame.draw.rect(self.win, self.white,rect1,2)
+            #pygame.draw.rect(self.win, self.white,rect2,2)
             self.button("Para volver presione ESC",300,400,250,50, self.button_back, self.button_back, self.black, self.salir)
             self.button("Guardar nombres",325,330,200,50, self.button_guardar_press, self.button_guardar, self.black, self.guardar_jugadores)
             self.message_display("Nombre del jugador 1 (Fichas Negras):",330,100,self.white, 20)
@@ -287,7 +288,7 @@ class Interfaz:
     #color2 es el color cuando no se toca
     #color3 es el color del texto
     #action es el objeto del metodo que ejecuta el boton
-    def button(self,msg,x,y,w,h,color1,color2,color3, action):
+    def button(self,msg,x,y,w,h,color1,color2,color3, action=None):
         mouse = pygame.mouse.get_pos()
         click = pygame.mouse.get_pressed()
         #si el mouse esta encima del boton cambia de color
@@ -302,6 +303,23 @@ class Interfaz:
 
         #texto del boton
         self.message_display(msg,(x+(w/2)),(y+(h/2)),color3,17)
+        #clock.tick(15)
+		
+    def name_button(self,msg,x,y,w,h,color1,color2,color3, action=None):
+        mouse = pygame.mouse.get_pos()
+        click = pygame.mouse.get_pressed()
+        #si el mouse esta encima del boton cambia de color
+        if x+w > mouse[0] > x and y+h > mouse[1] > y:
+            pygame.draw.rect(self.win, color1,(x,y,w,h),2)
+
+            #click se ejecuta el metodo
+            if click[0] == 1 and action != None:
+                action()
+        else:
+            pygame.draw.rect(self.win, color2,(x,y,w,h),2)
+
+        #texto del boton
+        #self.message_display(msg,(x+(w/2)),(y+(h/2)),color3,17)
         #clock.tick(15)
 
     #menu del juego

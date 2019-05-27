@@ -121,11 +121,17 @@ class Interfaz:
 
 
             #se muestra el fondo
+            textj1= "Fichas de "
+            textj2= "Fichas de "
             self.win.blit(self.fondo,(0,0))
             #se muestran botones
             self.button("Ver Reglas",490,30,150,100,self.button_ver_reglas_press, self.button_ver_reglas, self.black, self.ver_reglas)
             self.button("Para Volver presione ESC",490,290,300,100,self.button_back, self.button_back, self.black, self.salir)
             self.button("Guardar Partida",490,160,150,100,self.button_guardar_press, self.button_guardar, self.black, self.guardar_partida)
+            textj1 += self.controlador.getNombreJugador1()
+            textj2 += self.controlador.getNombreJugador2()
+            self.message_display(textj1 + ":  " +str(self.controlador.get_num_negras()),590,470,self.white,20)
+            self.message_display(textj2 + ":  "+str(self.controlador.get_num_blancas()),590,520,self.white,20)
             text = "Turno de "
             ganador = "Gano "
             if seguir:

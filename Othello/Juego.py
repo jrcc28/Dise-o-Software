@@ -94,20 +94,89 @@ class Game:
 
         return int(row[2])
          
+    
+    def flip(self, direction, fila,columna, color):
+        if direction == 1:
+            # north
+            row_inc = -1
+            col_inc = 0
+        elif direction == 2:
+            # northeast
+            row_inc = -1
+            col_inc = 1
+        elif direction == 3:
+            # east
+            row_inc = 0
+            col_inc = 1
+        elif direction == 4:
+            # southeast
+            row_inc = 1
+            col_inc = 1
+        elif direction == 5:
+            # south
+            row_inc = 1
+            col_inc = 0
+        elif direction == 6:
+            # southwest
+            row_inc = 1
+            col_inc = -1
+        elif direction == 7:
+            # west
+            row_inc = 0
+            col_inc = -1
+        elif direction == 8:
+            # northwest
+            row_inc = -1
+            col_inc = -1
 
+        places = []     # pieces to flip
+        i = fila + row_inc
+        j = columna + col_inc
+
+        if color == 1:
+            other = 2
+        else:
+            other = 1
+
+        if i in range(8) and j in range(8) and self.board[i][j] == other:
+            # assures there is at least one piece to flip
+            print(1)
+            places = places + [(i, j)]
+            i = i + row_inc
+            j = j + col_inc
+            while i in range(8) and j in range(8) and self.board[i][j] == other:
+                # search for more pieces to flip
+                places = places + [(i, j)]
+                i = i + row_inc
+                j = j + col_inc
+            if i in range(8) and j in range(8) and self.board[i][j] == color:
+                # found a piece of the right color to flip the pieces between
+                for pos in places:
+                    # flips
+                    self.board[pos[0]][pos[1]] = color
+                    if color == 1:
+                        self.num_negras= self.num_negras + 1
+                        self.num_blancas= self.num_blancas -1
+                    else:
+                        self.num_blancas= self.num_blancas + 1
+                        self.num_negras= self.num_negras - 1
 
 
     def set_ficha(self, fila, columna, valor):
         #solo se permite en posiciones validas
-  
         if self.board[fila][columna] == 3:
             self.board[fila][columna] = valor
+            for i in range(1, 9):
+                self.flip(i,fila,columna,valor)
+            
             if valor==1:
                 self.num_negras= self.num_negras + 1
+               
 
 
             elif valor==2:
-                self.num_blancas= self.num_blancas + 1     
+                self.num_blancas= self.num_blancas + 1
+                 
 			
             return True
 		

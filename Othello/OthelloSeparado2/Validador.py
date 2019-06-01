@@ -7,6 +7,10 @@ class Validador:
 	def get_mover_negras(self):
 		return self.mover_negra
 
+	def reset_validador(self):
+		self.mover_negra = True
+		self.mover_blanca = True
+
 	def get_mover_blancas(self):
 		return self.mover_blanca
 
@@ -36,132 +40,102 @@ class Validador:
 	def get_movimientos_permitidos(self, color, tablero): 
 		
 		mi_tablero = tablero.get_tablero()
-		if color == 1:
-			other = 2
+		if color== 1:
+			color_otro = 2
 		else:
-			other = 1
+			color_otro = 1
 
-		places = []
+		pos_validas = []
 
 		for i in range(8):
 			for j in range(8):
 				if mi_tablero[i][j] == color:
-					places = places + self.escanear_pos(i, j, color, mi_tablero)
+					pos_validas = pos_validas + self.escanear_pos(i, j, color, mi_tablero)
 				if mi_tablero[i][j]==3:
 					mi_tablero[i][j]=0
 					
 
-		places = list(set(places))
+		pos_validas = list(set(pos_validas))
 		
 				
-		#print(places)
-		for x in places:
+		#print(pos_validas)
+		for x in pos_validas:
 			i=int(x[0])
 			j=int(x[1])
 			tablero.board[i][j]=3
 
-		return places
+		return pos_validas
 		
-		
+	def buscar_pos_validas(self,i,j, fila, columna, color_otro, mi_tablero):
+		mov_fila= i-fila
+		mov_col= j-columna
+     
+		pos_validas=[]
+
+		if (i < 8 and i >= 0  and  j < 8 and j >= 0 and mi_tablero[i][j] == color_otro):
+			i = i + mov_fila
+			j = j + mov_col
+			while (i < 8 and i >= 0  and  j < 8 and j >= 0  and mi_tablero[i][j] == color_otro):
+				i = i + mov_fila
+				j = j + mov_col
+			if (i < 8 and i >= 0  and  j < 8 and j >= 0 and mi_tablero[i][j] == 0):
+				pos_validas = pos_validas + [(i, j)]
+
+
+		return pos_validas
+
+
 	def escanear_pos(self, fila, columna, color, mi_tablero):
 		
-		if color == 1:
-			other = 2
-		else:
-			other = 1
-
-		places = []
-
 		if (fila < 0 or fila > 7 or columna < 0 or columna > 7):
-			return places
+			return pos_validas
 
+		if color == 1:
+			color_otro = 2
+		else:
+			color_otro = 1
 
+		pos_validas = []
 
-		# north
+		
 		i = fila - 1
-		if (i >= 0 and mi_tablero[i][columna] == other):
-			i = i - 1
-			while (i >= 0 and mi_tablero[i][columna] == other):
-				i = i - 1
-			if (i >= 0 and mi_tablero[i][columna] == 0):
-				places = places + [(i, columna)]
-
-		# northeast
+		j = columna
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
+		
 		i = fila - 1
 		j = columna + 1
-		if (i >= 0 and j < 8 and mi_tablero[i][j] == other):
-			i = i - 1
-			j = j + 1
-			while (i >= 0 and j < 8 and mi_tablero[i][j] == other):
-				i = i - 1
-				j = j + 1
-			if (i >= 0 and j < 8 and mi_tablero[i][j] == 0):
-				places = places + [(i, j)]
-
-		# east
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
+		i = fila 
 		j = columna + 1
-		if (j < 8 and mi_tablero[fila][j] == other):
-			j = j + 1
-			while (j < 8 and mi_tablero[fila][j] == other):
-				j = j + 1
-			if (j < 8 and mi_tablero[fila][j] == 0):
-				places = places + [(fila, j)]
-
-		# southeast
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
 		i = fila + 1
 		j = columna + 1
-		if (i < 8 and j < 8 and mi_tablero[i][j] == other):
-			i = i + 1
-			j = j + 1
-			while (i < 8 and j < 8 and mi_tablero[i][j] == other):
-				i = i + 1
-				j = j + 1
-			if (i < 8 and j < 8 and mi_tablero[i][j] == 0):
-				places = places + [(i, j)]
-
-		# south
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
 		i = fila + 1
-		if (i < 8 and mi_tablero[i][columna] == other):
-			i = i + 1
-			while (i < 8 and mi_tablero[i][columna] == other):
-				i = i + 1
-			if (i < 8 and mi_tablero[i][columna] == 0):
-				places = places + [(i, columna)]
-
-		# southwest
+		j = columna
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
+		
 		i = fila + 1
 		j = columna - 1
-		if (i < 8 and j >= 0 and mi_tablero[i][j] == other):
-			i = i + 1
-			j = j - 1
-			while (i < 8 and j >= 0 and mi_tablero[i][j] == other):
-				i = i + 1
-				j = j - 1
-			if (i < 8 and j >= 0 and mi_tablero[i][j] == 0):
-				places = places + [(i, j)]
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
 
-		# west
+		i = fila 
 		j = columna - 1
-		if (j >= 0 and mi_tablero[fila][j] == other):
-			j = j - 1
-			while (j >= 0 and mi_tablero[fila][j] == other):
-				j = j - 1
-			if (j >= 0 and mi_tablero[fila][j] == 0):
-				places = places + [(fila, j)]
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
 
-		# northwest
+		
 		i = fila - 1
 		j = columna - 1
-		if (i >= 0 and j >= 0 and mi_tablero[i][j] == other):
-			i = i - 1
-			j = j - 1
-			while (i >= 0 and j >= 0 and mi_tablero[i][j] == other):
-				i = i - 1
-				j = j - 1
-			if (i >= 0 and j >= 0 and mi_tablero[i][j] == 0):
-				places = places + [(i, j)]
-
-		return places
+		pos_validas= pos_validas + self.buscar_pos_validas(i, j , fila , columna , color_otro, mi_tablero)
+		
+		return pos_validas
 		
 		
 	def get_estado_juego(self, turno, tablero): # VALIDADOR
@@ -207,65 +181,25 @@ class Validador:
 			
 		return False
 		
-		
-	def flip(self, direction, fila,columna, color, tablero): # AQUI SI HAY QUE USAR EL TABLERO DE LA CLASE TABLERO, NO UNA COPIA
-		if direction == 1:
-			# north
-			row_inc = -1
-			col_inc = 0
-		elif direction == 2:
-			# northeast
-			row_inc = -1
-			col_inc = 1
-		elif direction == 3:
-			# east
-			row_inc = 0
-			col_inc = 1
-		elif direction == 4:
-			# southeast
-			row_inc = 1
-			col_inc = 1
-		elif direction == 5:
-			# south
-			row_inc = 1
-			col_inc = 0
-		elif direction == 6:
-			# southwest
-			row_inc = 1
-			col_inc = -1
-		elif direction == 7:
-			# west
-			row_inc = 0
-			col_inc = -1
-		elif direction == 8:
-			# northwest
-			row_inc = -1
-			col_inc = -1
 
-		places = []     # pieces to flip
-		i = fila + row_inc
-		j = columna + col_inc
 
-		if color == 1:
-			other = 2
-		else:
-			other = 1
 
-		if i in range(8) and j in range(8) and tablero.board[i][j] == other:
-			# assures there is at least one piece to flip
-			#print(1)
-			places = places + [(i, j)]
-			i = i + row_inc
-			j = j + col_inc
-			while i in range(8) and j in range(8) and tablero.board[i][j] == other: # AQUI SI HAY QUE USAR EL TABLERO EN SI, NO UNA COPIA
-				# search for more pieces to flip
-				places = places + [(i, j)]
-				i = i + row_inc
-				j = j + col_inc
+	def aplicar_flip(self, color_otro, fila_flip, colum_flip, i, j, tablero, color):
+		pos_validas = [] 
+		if i in range(8) and j in range(8) and tablero.board[i][j] == color_otro:
+			
+			pos_validas = pos_validas + [(i, j)]
+			i = i + fila_flip
+			j = j + colum_flip
+			while i in range(8) and j in range(8) and tablero.board[i][j] == color_otro: 
+			
+				pos_validas = pos_validas + [(i, j)]
+				i = i + fila_flip
+				j = j + colum_flip
 			if i in range(8) and j in range(8) and tablero.board[i][j] == color:
-				# found a piece of the right color to flip the pieces between
-				for pos in places:
-					# flips
+			
+				for pos in pos_validas:
+				
 					tablero.board[pos[0]][pos[1]] = color
 					if color == 1:
 						tablero.set_negras(tablero.get_num_negras() + 1) 
@@ -273,3 +207,56 @@ class Validador:
 					else:
 						tablero.set_blancas(tablero.get_num_blancas() + 1)
 						tablero.set_negras(tablero.get_num_negras() - 1) 
+
+
+
+
+
+	def flip(self, direction, fila,columna, color, tablero): 
+
+		fila_flip = -1
+		colum_flip = 0
+		if direction == 2:
+
+			fila_flip = -1
+			colum_flip = 1
+		
+		elif direction == 3:
+			
+			fila_flip = 0
+			colum_flip = 1
+		
+		elif direction == 4:
+		
+			fila_flip = 1
+			colum_flip = 1
+		
+		elif direction == 5:
+	
+			fila_flip = 1
+			colum_flip = 0
+		
+		elif direction == 6:
+		
+			fila_flip = 1
+			colum_flip = -1
+		
+		elif direction == 7:
+		
+			fila_flip = 0
+			colum_flip = -1
+		
+		elif direction == 8:
+		
+			fila_flip = -1
+			colum_flip = -1
+    
+		i = fila + fila_flip
+		j = columna + colum_flip
+
+		if color == 1:
+			color_otro = 2
+		else:
+			color_otro = 1
+
+		self.aplicar_flip(color_otro, fila_flip, colum_flip, i, j, tablero, color)

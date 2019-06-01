@@ -20,6 +20,7 @@ class Juego:
 
 	def clean_game(self):
 		self.tablero.limpiar_tablero()
+		self.validador.reset_validador()
 
 	def get_tablero(self):
 		return self.tablero.get_tablero()

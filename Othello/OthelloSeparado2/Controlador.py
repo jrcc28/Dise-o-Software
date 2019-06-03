@@ -139,6 +139,26 @@ class Controlador:
 		position = (position[1], position[0])
 		continar = False
 		return position
+		
+	def event_type(self,event):
+		x = 0
+		if event.type == pygame.QUIT:
+			x = 1
+		if event.type == pygame.KEYDOWN:
+			x = 2
+		if event.type == pygame.MOUSEBUTTONDOWN:
+			x = 3
+		return x
+	
+	def event_key(self,event):
+		x = 0
+		if event.key == pygame.K_ESCAPE:
+			x = 1
+		if event.key == pygame.K_RETURN:
+			x = 2
+		if event.key == pygame.K_BACKSPACE:
+			x = 3
+		return x
 
 def main():
 	controlador = Controlador()

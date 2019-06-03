@@ -215,33 +215,35 @@ class Interfaz:
 		txt_surface1 = FONT.render(self.nombreIngresado1, True, self.white)
 		txt_surface2 = FONT.render(self.nombreIngresado2, True, self.white)
 		escoger=True
+		tipoEvento = 0
 		while escoger:
 			for event in pygame.event.get():
-				if event.type == pygame.QUIT:
+				tipoEvento = self.controlador.event_type(event)
+				if tipoEvento == 1:
 					pygame.quit()
-				if event.type == pygame.KEYDOWN:
-					if event.key == pygame.K_ESCAPE:
+				if tipoEvento == 2:
+					if self.controlador.event_key(event) == 1:
 						escoger = False
 						self.win.blit(self.fondo,(0,0))
-					if event.key == pygame.K_RETURN:
+					if self.controlador.event_key(event) == 2:
 						self.guardar_jugadores()
 						print(self.nombreIngresado1)
 						print(self.nombreIngresado2)
 					if active1:
-						if event.key == pygame.K_BACKSPACE:
+						if self.controlador.event_key(event) == 3:
 							self.nombreIngresado1 = self.nombreIngresado1[:-1]
 						else:
 							self.nombreIngresado1 += event.unicode
 						# Re-render the text.
 						txt_surface1 = FONT.render(self.nombreIngresado1, True, self.white)
 					if active2:
-						if event.key == pygame.K_BACKSPACE:
+						if self.controlador.event_key(event) == 3:
 							self.nombreIngresado2 = self.nombreIngresado2[:-1]
 						else:
 							self.nombreIngresado2 += event.unicode
 						# Re-render the text.
 						txt_surface2 = FONT.render(self.nombreIngresado2, True, self.white)
-				if event.type == pygame.MOUSEBUTTONDOWN:
+				if tipoEvento == 3:
 					# If the user clicked on the input_box rect.
 					if rect1.collidepoint(event.pos):
 					# Toggle the active variable.

@@ -1,8 +1,21 @@
 from TableroAbs import TableroAbs
+from Pieza import Pieza
 
 class Tablero(TableroAbs):
-	#def __init__(self):
-		
+	def __init__(self):
+		self.board = [[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(3,3), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(1,1), Pieza(2,2), Pieza(3,3), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(3,3), Pieza(2,2), Pieza(1,1), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(3,3), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)]]
+			#self.mover_negra=True
+			#self.mover_blanca=True
+		self.num_negras=2
+		self.num_blancas=2
+
 	def get_num_negras(self):
 		return self.num_negras
 
@@ -16,26 +29,27 @@ class Tablero(TableroAbs):
 		self.num_blancas = cantidad
 
 	def limpiar_tablero(self):
-		self.board = [[0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 3, 0, 0, 0],
-			[0, 0, 0, 1, 2, 3, 0, 0],
-			[0, 0, 3, 2, 1, 0, 0, 0],
-			[0, 0, 0, 3, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0],
-			[0, 0, 0, 0, 0, 0, 0, 0]]
+		self.board = [[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(3,3), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(1,1), Pieza(2,2), Pieza(3,3), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(3,3), Pieza(2,2), Pieza(1,1), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(3,3), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)],
+			[Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0), Pieza(0,0)]]
 		#self.mover_negra=True
 		#self.mover_blanca=True
 		self.num_negras=2
 		self.num_blancas=2
-		
+
 	def get_tablero(self):
 		return self.board
 
 	def llenar_tablero(self,row,i):
 		for j in range(8):
-			self.board[i][j]=int(row[j])
-			   
+			print("%s,%s",i,j)
+			self.board[i][j].set_color(row[j])
+
 	def llenar_fichas(self,row):
 		self.num_negras=int(row[0])
 		self.num_blancas=int(row[1])

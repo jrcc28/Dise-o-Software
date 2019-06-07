@@ -1,5 +1,7 @@
 from Interfaz import *
 from Juego import *
+from Jugador import Jugador
+from Pieza import Pieza
 import csv
 #to windows compile: py -m pip install -U pygame --user
 #windows use: >py -m Controlador
@@ -9,8 +11,11 @@ class Controlador:
 		self.game = Juego()
 		self.interfaz = Interfaz(self)
 		self.turno = 1
-		self.nombreJugador1 = "Jugador 1"
-		self.nombreJugador2 = "Jugador 2"
+
+		#se instancian los jugadores
+		self.jugador1 = Jugador(Pieza(1,1),"Jugador 1")
+		self.jugador2 = Jugador(Pieza(2,2),"Jugador 2")
+
 		#posiciones del tablero y tamanos
 		self.cuadro = 50
 		self.borde = 20
@@ -23,6 +28,7 @@ class Controlador:
 
 	def get_tablero(self):
 		return self.game.get_tablero()
+
     #por el momento solo csv
 	def leer_archivo(self, name):
 		count_info=0
@@ -69,19 +75,19 @@ class Controlador:
 				if not self.game.hay_movimientos_validos():
 					self.set_turno(2)
 					self.game.cambiar_turno(2)
-				    
+
 
 	def setNombreJugador1(self,nombre):
-		self.nombreJugador1 = nombre
+		self.jugador1.set_nombre(nombre)
 
 	def getNombreJugador1(self):
-		return self.nombreJugador1
+		return self.jugador1.get_nombre()
 
 	def setNombreJugador2(self,nombre):
-		self.nombreJugador2 = nombre
+		self.jugador2.set_nombre(nombre)
 
 	def getNombreJugador2(self):
-		return self.nombreJugador2
+		return self.jugador2.get_nombre()
 
 	def get_reglas(self):
 		#string con las reglas.
@@ -139,7 +145,7 @@ class Controlador:
 		position = (position[1], position[0])
 		continar = False
 		return position
-		
+
 	def event_type(self,event):
 		x = 0
 		if event.type == pygame.QUIT:
@@ -149,7 +155,7 @@ class Controlador:
 		if event.type == pygame.MOUSEBUTTONDOWN:
 			x = 3
 		return x
-	
+
 	def event_key(self,event):
 		x = 0
 		if event.key == pygame.K_ESCAPE:

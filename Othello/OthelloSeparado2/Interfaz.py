@@ -2,6 +2,7 @@
 # -*- coding: latin-1 -*-
 import time
 import pygame
+from Pieza import Pieza
 from Controlador import Controlador
 
 class Interfaz:
@@ -115,7 +116,7 @@ class Interfaz:
 				elif event.type == pygame.MOUSEBUTTONUP:
 					pos = pygame.mouse.get_pos()
 					self.controlador.jugar_turno(pos[0],pos[1])
-					
+
 
 			if not self.controlador.get_mover_negras() and not self.controlador.get_mover_blancas():
 				seguir=False
@@ -132,7 +133,7 @@ class Interfaz:
 			self.message_display(textj1 + ":  " +str(self.controlador.get_num_negras()),590,500,self.white,20)
 			self.message_display(textj2 + ":  "+str(self.controlador.get_num_blancas()),590,550,self.white,20)
 			text = "Turno de "
-			ganador = "Gano "  
+			ganador = "Gano "
 			if seguir:
 				if self.controlador.get_turno() == 1:
 					text += self.controlador.getNombreJugador1()
@@ -165,14 +166,11 @@ class Interfaz:
 			#print(tablero)
 			for fila in range(8):
 				for colunm in range(8):
-					if tablero[fila][colunm] == 1:
-
+					if tablero[fila][colunm].get_color() == 1:
 						self.win.blit(self.blackToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
-					elif tablero[fila][colunm] == 2:
-
+					elif tablero[fila][colunm].get_color() == 2:
 						self.win.blit(self.whiteToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
-					elif tablero[fila][colunm] == 3:
-
+					elif tablero[fila][colunm].get_color() == 3:
 						self.win.blit(self.availableToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
 
 			pygame.display.update()
@@ -306,7 +304,7 @@ class Interfaz:
 		#texto del boton
 		self.message_display(msg,(x+(w/2)),(y+(h/2)),color3,17)
 		#clock.tick(15)
-		
+
 	def name_button(self,msg,x,y,w,h,color1,color2,color3, action=None):
 		mouse = pygame.mouse.get_pos()
 		click = pygame.mouse.get_pressed()

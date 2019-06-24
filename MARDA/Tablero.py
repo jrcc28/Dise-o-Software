@@ -1,0 +1,56 @@
+from TableroAbs import TableroAbs
+from Pieza import Pieza
+
+class Tablero(TableroAbs):
+#recibe la cantidad de filas y columnas y llena el tablero de fichas vacias
+	def __init__(self, filas,columnas):
+		self.board = []
+		for i in range(filas):
+			self.board.append([])
+			for j in range(columnas):
+				self.board.append(Pieza(0,0))
+				
+		self.filas=filas
+		self.columnas=columnas
+				
+		
+#busca la cantidad de piezas en el tablero de una pieza especifica
+	def get_num_piezas(self, pieza):
+		num_piezas=0
+		for i in range(self.filas):
+			for j in range(self.columnas):
+				if self.board[i][j].get_tipo()== pieza:
+					num_piezas=num_piezas+1
+		
+		return num_piezas
+
+	
+#restea el tablero a estado inicial
+	def limpiar_tablero(self):
+		for i in range(self.filas):
+			self.board.append([])
+			for j in range(self.columnas):
+				self.board.append(Pieza(0,0))
+		
+
+	def get_tablero(self):
+		return self.board
+		
+#retorna el tablero pero no en piezas si no en valores int que definen el tipo de pieza	
+	def get_valores_tablero(self):
+		tablero_valores=[]
+		
+		for i in range(self.filas):
+			tablero_valores.append([])
+			for j in range(self.columnas):
+				tablero_valores.append(self.board[i][j].get_tipo())
+		
+		
+			
+		return tablero_valores
+
+#llena el tablero cuando se hacer cargar
+	def llenar_tablero(self,row,i):
+		for i in range(self.filas):
+			self.board[i][j].set_color(row[j])
+			self.board[i][j].set_tipo(row[j])

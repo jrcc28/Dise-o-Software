@@ -3,7 +3,7 @@ from Tablero import *
 from Validador import *
 class Juego:
 	def __init__(self):
-		self.tablero = Tablero()
+		self.tablero = Tablero(8, 8)
 		self.validador = Validador()
 
 	def get_num_negras(self):

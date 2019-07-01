@@ -4,10 +4,11 @@ from Jugador import Jugador
 from Pieza import Pieza
 import csv
 import pygame
+from ControladorAbs import ControladorAbs
 #to windows compile: py -m pip install -U pygame --user
 #windows use: >py -m Controlador
 
-class Controlador:
+class Controlador(ControladorAbs):
 	def __init__(self):
 		self.game = Juego()
 		self.interfaz = Interfaz(self)
@@ -117,9 +118,6 @@ class Controlador:
 
 	def set_turno(self, valor):
 		self.turno = valor
-
-	def get_turno(self):
-		return self.turno
 
 	def get_num_negras(self):
 		return self.game.get_num_negras()

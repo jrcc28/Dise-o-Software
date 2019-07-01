@@ -1,7 +1,8 @@
+from ValidadorAbs import ValidadorAbs
 from Tablero import *
 from Pieza import Pieza
 
-class Validador:
+class Validador(ValidadorAbs):
 	def __init__(self):
 		self.mover_negra=True
 		self.mover_blanca=True

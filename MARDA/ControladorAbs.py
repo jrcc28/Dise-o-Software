@@ -26,3 +26,14 @@ class ControladorAbs(ABC):
 		
 	def get_turno(self):
 		pass
+		
+	#busca la cantidad de piezas en el tablero de una pieza especifica
+	def get_num_piezas(self, pieza):
+		pass
+		
+		
+	def get_filas(self):
+		pass
+		
+	def get_columnas(self):
+		pass

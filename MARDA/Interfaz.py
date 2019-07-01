@@ -133,8 +133,8 @@ class Interfaz:
 			self.button("Para Volver presione ESC",490,290,300,100,self.button_back, self.button_back, self.black, self.salir)
 			textj1 += self.controlador.getNombreJugador1()
 			textj2 += self.controlador.getNombreJugador2()
-			self.message_display(textj1 + ":  " +str(self.controlador.get_num_negras()),590,500,self.white,20)
-			self.message_display(textj2 + ":  "+str(self.controlador.get_num_blancas()),590,550,self.white,20)
+			self.message_display(textj1 + ":  " +str(self.controlador.get_num_piezas(1)),590,500,self.white,20)
+			self.message_display(textj2 + ":  "+str(self.controlador.get_num_piezas(2)),590,550,self.white,20)
 			text = "Turno de "
 			ganador = "Gano "
 			if seguir:
@@ -145,17 +145,17 @@ class Interfaz:
 					text += self.controlador.getNombreJugador2()
 					self.message_display(text,590,450,self.white,20)
 			else:
-				if self.controlador.get_num_negras()> self.controlador.get_num_blancas():
+				if self.controlador.get_num_piezas(1)> self.controlador.get_num_piezas(2):
 					ganador += self.controlador.getNombreJugador1()
 					ganador += "!!"
 					self.message_display(ganador,590,450,self.white,20)
 
-				if self.controlador.get_num_negras()< self.controlador.get_num_blancas():
+				if self.controlador.get_num_piezas(1)< self.controlador.get_num_piezas(2):
 					ganador += self.controlador.getNombreJugador2()
 					ganador += "!!"
 					self.message_display(ganador,590,450,self.white,20)
 
-				if self.controlador.get_num_negras()== self.controlador.get_num_blancas():
+				if self.controlador.get_num_piezas(1)== self.controlador.get_num_piezas(2):
 					self.message_display("Empate!!!!!",590,450,self.white,20)
 
 
@@ -167,8 +167,8 @@ class Interfaz:
 			#print(self.controlador.get_tablero())
 			tablero = self.controlador.get_tablero()
 			#print(tablero)
-			for fila in range(8):
-				for colunm in range(8):
+			for fila in range(self.controlador.get_filas()):
+				for colunm in range(self.controlador.get_columnas()):)):
 					if tablero[fila][colunm].get_color() == 1:
 						self.win.blit(self.blackToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
 					elif tablero[fila][colunm].get_color() == 2:

@@ -17,6 +17,16 @@ class Juego:
 
 	def get_mover_blancas(self):
 		return self.validador.get_mover_blancas()
+		
+	def get_num_piezas(self, pieza):
+		return self.tablero.get_num_piezas(pieza)
+		
+		
+	def get_filas(self):
+		return self.tablero.get_filas)
+		
+	def get_columnas(self):
+		return self.tablero.get_columnas()
 
 	def clean_game(self):
 		self.tablero.limpiar_tablero()

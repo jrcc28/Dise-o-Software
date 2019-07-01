@@ -119,17 +119,17 @@ class Controlador(ControladorAbs):
 	def set_turno(self, valor):
 		self.turno = valor
 
-	def get_num_negras(self):
-		return self.game.get_num_negras()
-
-	def get_num_blancas(self):
-		return self.game.get_num_blancas()
-
-	def get_mover_negras(self):
-		return self.game.get_mover_negras()
-
-	def get_mover_blancas(self):
-		return self.game.get_mover_blancas()
+		
+	#busca la cantidad de piezas en el tablero de una pieza especifica
+	def get_num_piezas(self, pieza):
+		return self.game.get_num_piezas(pieza)
+		
+		
+	def get_filas(self):
+		return self.game.get_filas)
+		
+	def get_columnas(self):
+		return self.game.get_columnas()
 
 	def convertir_pos(self,mouse_x ,mouse_y ):
 		# click was out of board, ignores
@@ -230,6 +230,8 @@ class Controlador(ControladorAbs):
 					return 3
 
 		return True
+		
+		
 
 
 def main():

@@ -19,6 +19,7 @@ class Controlador(ControladorAbs):
 		self.jugador2 = Jugador(Pieza(2,2),"Jugador 2")
 
 		#posiciones del tablero y tamanos
+		self.espacioVentanaTablero = 50
 		self.cuadro = 50
 		self.borde = 20
 		self.tableroPos = 30
@@ -59,7 +60,10 @@ class Controlador(ControladorAbs):
 	def reset(self):
 		self.game.clean_game()
 		self.turno=1
-
+		#se vuelven a crear los jugadores
+		self.jugador1 = Jugador(Pieza(1,1),"Jugador 1")
+		self.jugador2 = Jugador(Pieza(2,2),"Jugador 2")
+		
 	def jugar_turno(self,x,y):
 		pos_valida = self.convertir_pos(x,y)
 		#esto es para colocar alguna ficha en el tablero(matriz) debe ser una posicion valida
@@ -131,15 +135,15 @@ class Controlador(ControladorAbs):
 
 	def convertir_pos(self,mouse_x ,mouse_y ):
 		# click was out of board, ignores
-		if mouse_x > self.BOARD_SIZE + 50 or \
-			mouse_x < 50 or \
-			mouse_y > self.BOARD_SIZE + 50 or \
-			mouse_y < 50:
+		if mouse_x > self.BOARD_SIZE + espacioVentanaTablero or \
+			mouse_x < espacioVentanaTablero or \
+			mouse_y > self.BOARD_SIZE + espacioVentanaTablero or \
+			mouse_y < espacioVentanaTablero:
 			position = (-1,-1)
 			return position
 
 		# find place
-		position = ((mouse_x - 50) // self.cuadro),((mouse_y - 50) // self.cuadro)
+		position = ((mouse_x - espacioVentanaTablero) // self.cuadro),((mouse_y - espacioVentanaTablero) // self.cuadro)
 		# flip orientation
 		position = (position[1], position[0])
 		continar = False
@@ -155,20 +159,18 @@ class Controlador(ControladorAbs):
 					self.interfaz.blit()
 					return False
 		return True
-
-
+		
 	def eventos_menu(self):
 		for tipoEvento in pygame.event.get():
 			if tipoEvento.type == pygame.QUIT:
 					self.interfaz.quit()
 		return True
 
-
 	
 	def eventos_tablero(self):
 		for tipoEvento in pygame.event.get():
 			if tipoEvento.type == pygame.QUIT:
-				self.interfaz.quit()
+			self.interfaz.quit()
 			
 			elif tipoEvento.type == pygame.KEYDOWN:
 				if tipoEvento.key == pygame.K_ESCAPE:
@@ -181,7 +183,6 @@ class Controlador(ControladorAbs):
 		
 
 		return True
-
 
 	def eventos_elegir_color(self,active1,active2):
 		

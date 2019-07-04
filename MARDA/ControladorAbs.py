@@ -48,3 +48,6 @@ class ControladorAbs(ABC):
 
 	def getNombreJugador2(self):
 		pass
+		
+	def convertir_pos(self,mouse_x ,mouse_y ):
+		pass

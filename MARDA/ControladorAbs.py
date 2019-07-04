@@ -31,9 +31,20 @@ class ControladorAbs(ABC):
 	def get_num_piezas(self, pieza):
 		pass
 		
-		
 	def get_filas(self):
 		pass
 		
 	def get_columnas(self):
+		pass
+		
+	def setNombreJugador1(self,nombre):
+		pass
+
+	def getNombreJugador1(self):
+		pass
+
+	def setNombreJugador2(self,nombre):
+		pass
+
+	def getNombreJugador2(self):
 		pass

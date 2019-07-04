@@ -23,8 +23,6 @@ class Controlador(ControladorAbs):
 		self.borde = 20
 		self.tableroPos = 30
 		self.BOARD_SIZE = 400
-		self.nombreIngresado1 =''
-		self.nombreIngresado2 =''
 
 
 	def start(self):
@@ -81,14 +79,14 @@ class Controlador(ControladorAbs):
 					self.game.cambiar_turno(2)
 
 
-	def setNombreJugador1(self):
-		self.jugador1.set_nombre(self.nombreIngresado1)
+	def setNombreJugador1(self,nombre):
+		self.jugador1.set_nombre(self.nombre)
 
 	def getNombreJugador1(self):
 		return self.jugador1.get_nombre()
 
-	def setNombreJugador2(self):
-		self.jugador2.set_nombre(self.nombreIngresado2)
+	def setNombreJugador2(self,nombre):
+		self.jugador2.set_nombre(self.nombre)
 
 	def getNombreJugador2(self):
 		return self.jugador2.get_nombre()
@@ -126,7 +124,7 @@ class Controlador(ControladorAbs):
 		
 		
 	def get_filas(self):
-		return self.game.get_filas)
+		return self.game.get_filas()
 		
 	def get_columnas(self):
 		return self.game.get_columnas()

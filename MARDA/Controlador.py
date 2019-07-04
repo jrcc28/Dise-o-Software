@@ -17,7 +17,8 @@ class Controlador(ControladorAbs):
 		#se instancian los jugadores
 		self.jugador1 = Jugador(Pieza(1,1),"Jugador 1")
 		self.jugador2 = Jugador(Pieza(2,2),"Jugador 2")
-
+		self.nombreIngresado2 = ""
+		self.nombreIngresado1 = ""
 		#posiciones del tablero y tamanos
 		self.espacioVentanaTablero = 50
 		self.cuadro = 50
@@ -83,14 +84,14 @@ class Controlador(ControladorAbs):
 					self.game.cambiar_turno(2)
 
 
-	def setNombreJugador1(self,nombre):
-		self.jugador1.set_nombre(self.nombre)
+	def setNombreJugador1(self):
+		self.jugador1.set_nombre(self.nombreIngresado1)
 
 	def getNombreJugador1(self):
 		return self.jugador1.get_nombre()
 
-	def setNombreJugador2(self,nombre):
-		self.jugador2.set_nombre(self.nombre)
+	def setNombreJugador2(self):
+		self.jugador2.set_nombre(self.nombreIngresado2)
 
 	def getNombreJugador2(self):
 		return self.jugador2.get_nombre()

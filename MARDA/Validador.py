@@ -66,19 +66,18 @@ class Validador(ValidadorAbs):
 
 		return pos_validas
 
-	def buscar_pos_validas(self,i,j, fila, columna, color_otro, mi_tablero):
+	def buscar_pos_validas(self,i,j, fila, columna, color_otro, tablero):
 		mov_fila= i-fila
 		mov_col= j-columna
-
+		mi_tablero = tablero.get_tablero()
 		pos_validas=[]
-
-		if (i < tablero.get_filas()  and i >= 0  and  j < tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == color_otro):
+		if (i < mi_tablero.get_filas()  and i >= 0  and  j < mi_tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == color_otro):
 			i = i + mov_fila
 			j = j + mov_col
-			while (i < tablero.get_filas() and i >= 0  and  j < tablero.get_columnas() and j >= 0  and mi_tablero[i][j].get_color() == color_otro):
+			while (i < mi_tablero.get_filas() and i >= 0  and  j < mi_tablero.get_columnas() and j >= 0  and mi_tablero[i][j].get_color() == color_otro):
 				i = i + mov_fila
 				j = j + mov_col
-			if (i < tablero.get_filas() and i >= 0  and  j < tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == 0):
+			if (i < mi_tablero.get_filas() and i >= 0  and  j < mi_tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == 0):
 				pos_validas = pos_validas + [(i, j)]
 
 

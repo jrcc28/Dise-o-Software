@@ -20,8 +20,14 @@ class Tablero(TableroAbs):
 		for i in range(filas):
 			for j in range(columnas):
 				self.board[i].append(Pieza(self.fichas_vacias,self.fichas_vacias))
-				
-				
+		
+
+		# NEGRAS = TIPO 1
+		# BLANCAS = TIPO 2
+		self.board[3][3] = Pieza(1, 1)
+		self.board[3][4] = Pieza(2, 2)
+		self.board[4][3] = Pieza(2, 2)
+		self.board[4][4] = Pieza(1, 1)
 		
 				
 		
@@ -30,7 +36,6 @@ class Tablero(TableroAbs):
 		num_piezas=0
 		for i in range((self.filas - 1)):
 			for j in range((self.columnas - 1)):
-				print(j)
 				if self.board[i][j].get_tipo()== pieza:
 					num_piezas=num_piezas+1
 		

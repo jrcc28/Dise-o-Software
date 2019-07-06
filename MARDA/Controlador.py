@@ -127,6 +127,11 @@ class Controlador(ControladorAbs):
 	def get_num_piezas(self, pieza):
 		return self.game.get_num_piezas(pieza)
 		
+	def get_mover_negras(self):
+		return self.game.get_mover_negras()
+
+	def get_mover_blancas(self):
+		return self.game.get_mover_blancas()
 		
 	def get_filas(self):
 		return self.game.get_filas()
@@ -171,7 +176,7 @@ class Controlador(ControladorAbs):
 	def eventos_tablero(self):
 		for tipoEvento in pygame.event.get():
 			if tipoEvento.type == pygame.QUIT:
-			self.interfaz.quit()
+				self.interfaz.quit()
 			
 			elif tipoEvento.type == pygame.KEYDOWN:
 				if tipoEvento.key == pygame.K_ESCAPE:

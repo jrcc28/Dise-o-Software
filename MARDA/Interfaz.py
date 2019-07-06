@@ -168,7 +168,7 @@ class Interfaz:
 			tablero = self.controlador.get_tablero()
 			#print(tablero)
 			for fila in range(self.controlador.get_filas()):
-				for colunm in range(self.controlador.get_columnas()):)):
+				for colunm in range(self.controlador.get_columnas()):
 					if tablero[fila][colunm].get_color() == 1:
 						self.win.blit(self.blackToken,((self.cuadro*colunm)+self.tableroPos+self.borde,(self.cuadro*fila)+self.tableroPos+self.borde))
 					elif tablero[fila][colunm].get_color() == 2:

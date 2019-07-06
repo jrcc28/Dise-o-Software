@@ -23,7 +23,7 @@ class Juego:
 		
 		
 	def get_filas(self):
-		return self.tablero.get_filas
+		return self.tablero.get_filas()
 		
 	def get_columnas(self):
 		return self.tablero.get_columnas()

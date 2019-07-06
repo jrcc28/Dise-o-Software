@@ -12,10 +12,15 @@ class Tablero(TableroAbs):
 		self.fichas_vacias=0
 		self.fichas_validas=3
 		
+		
+		self.board = [0] * filas
 		for i in range(filas):
-			self.board.append([])
+			self.board[i] = [] * columnas
+		
+		for i in range(filas):
 			for j in range(columnas):
-				self.board.append(Pieza(self.fichas_vacias,self.fichas_vacias))
+				self.board[i].append(Pieza(self.fichas_vacias,self.fichas_vacias))
+				
 				
 		
 				
@@ -23,8 +28,9 @@ class Tablero(TableroAbs):
 #busca la cantidad de piezas en el tablero de una pieza especifica
 	def get_num_piezas(self, pieza):
 		num_piezas=0
-		for i in range(self.filas):
-			for j in range(self.columnas):
+		for i in range((self.filas - 1)):
+			for j in range((self.columnas - 1)):
+				print(j)
 				if self.board[i][j].get_tipo()== pieza:
 					num_piezas=num_piezas+1
 		

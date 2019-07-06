@@ -159,9 +159,9 @@ class Interfaz:
 					self.message_display("Empate!!!!!",590,450,self.white,20)
 
 
-
 			#se muestra el tablero
 			self.win.blit(self.board,(30,30))
+			print("Tablero mostrado")
 
 			#colocar fichas sobre tablero(imagen
 			#print(self.controlador.get_tablero())

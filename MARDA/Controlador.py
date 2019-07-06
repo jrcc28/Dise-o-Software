@@ -141,15 +141,15 @@ class Controlador(ControladorAbs):
 
 	def convertir_pos(self,mouse_x ,mouse_y ):
 		# click was out of board, ignores
-		if mouse_x > self.BOARD_SIZE + espacioVentanaTablero or \
-			mouse_x < espacioVentanaTablero or \
-			mouse_y > self.BOARD_SIZE + espacioVentanaTablero or \
-			mouse_y < espacioVentanaTablero:
+		if mouse_x > self.BOARD_SIZE + self.espacioVentanaTablero or \
+			mouse_x < self.espacioVentanaTablero or \
+			mouse_y > self.BOARD_SIZE + self.espacioVentanaTablero or \
+			mouse_y < self.espacioVentanaTablero:
 			position = (-1,-1)
 			return position
 
 		# find place
-		position = ((mouse_x - espacioVentanaTablero) // self.cuadro),((mouse_y - espacioVentanaTablero) // self.cuadro)
+		position = ((mouse_x - self.espacioVentanaTablero) // self.cuadro),((mouse_y - self.espacioVentanaTablero) // self.cuadro)
 		# flip orientation
 		position = (position[1], position[0])
 		continar = False

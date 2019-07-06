@@ -50,7 +50,7 @@ class Validador(ValidadorAbs):
 		for i in range(tablero.get_filas()):
 			for j in range(tablero.get_columnas()):
 				if mi_tablero[i][j].get_color() == color:
-					pos_validas = pos_validas + self.escanear_pos(i, j, color, mi_tablero)
+					pos_validas = pos_validas + self.escanear_pos(i, j, color, tablero)
 				if mi_tablero[i][j].get_color()==tablero.get_fichas_validas():
 					mi_tablero[i][j].set_color(tablero.get_fichas_vacias())
 
@@ -71,13 +71,13 @@ class Validador(ValidadorAbs):
 		mov_col= j-columna
 		mi_tablero = tablero.get_tablero()
 		pos_validas=[]
-		if (i < mi_tablero.get_filas()  and i >= 0  and  j < mi_tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == color_otro):
+		if (i < tablero.get_filas()  and i >= 0  and  j < tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == color_otro):
 			i = i + mov_fila
 			j = j + mov_col
-			while (i < mi_tablero.get_filas() and i >= 0  and  j < mi_tablero.get_columnas() and j >= 0  and mi_tablero[i][j].get_color() == color_otro):
+			while (i < tablero.get_filas() and i >= 0  and  j < tablero.get_columnas() and j >= 0  and mi_tablero[i][j].get_color() == color_otro):
 				i = i + mov_fila
 				j = j + mov_col
-			if (i < mi_tablero.get_filas() and i >= 0  and  j < mi_tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == 0):
+			if (i < tablero.get_filas() and i >= 0  and  j < tablero.get_columnas() and j >= 0 and mi_tablero[i][j].get_color() == 0):
 				pos_validas = pos_validas + [(i, j)]
 
 
@@ -193,11 +193,11 @@ class Validador(ValidadorAbs):
 
 					tablero.board[pos[0]][pos[1]].set_color(color)
 					if color == 1:
-						tablero.set_negras(tablero.get_num_negras() + 1)
-						tablero.set_blancas(tablero.get_num_blancas() - 1)
+						tablero.set_num_negras(tablero.get_num_negras() + 1)
+						tablero.set_num_blancas(tablero.get_num_blancas() - 1)
 					else:
-						tablero.set_blancas(tablero.get_num_blancas() + 1)
-						tablero.set_negras(tablero.get_num_negras() - 1)
+						tablero.set_num_blancas(tablero.get_num_blancas() + 1)
+						tablero.set_num_negras(tablero.get_num_negras() - 1)
 
 
 

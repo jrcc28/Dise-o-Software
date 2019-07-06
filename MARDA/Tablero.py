@@ -11,7 +11,11 @@ class Tablero(TableroAbs):
 		self.fichas_invalidas=-1
 		self.fichas_vacias=0
 		self.fichas_validas=3
+		self.num_blancas = 2
+		self.num_negras = 2
 		
+		self.negro = 1
+		self.blanco = 2
 		
 		self.board = [0] * filas
 		for i in range(filas):
@@ -24,10 +28,10 @@ class Tablero(TableroAbs):
 
 		# NEGRAS = TIPO 1
 		# BLANCAS = TIPO 2
-		self.board[3][3] = Pieza(1, 1)
-		self.board[3][4] = Pieza(2, 2)
-		self.board[4][3] = Pieza(2, 2)
-		self.board[4][4] = Pieza(1, 1)
+		self.board[3][3] = Pieza(self.negro, self.negro)
+		self.board[3][4] = Pieza(self.blanco, self.blanco)
+		self.board[4][3] = Pieza(self.blanco, self.blanco)
+		self.board[4][4] = Pieza(self.negro, self.negro)
 		
 				
 		
@@ -41,8 +45,17 @@ class Tablero(TableroAbs):
 		
 		return num_piezas
 		
-	
+	def set_num_blancas(self, num):
+		self.num_blancas = num
 
+	def set_num_negras(self, num):
+		self.num_negras = num
+		
+	def get_num_blancas(self):
+		return self.num_blancas
+		
+	def get_num_negras(self):
+		return self.num_negras
 	
 #restea el tablero a estado inicial
 	def limpiar_tablero(self):
@@ -50,6 +63,14 @@ class Tablero(TableroAbs):
 			self.board.append([])
 			for j in range(self.columnas):
 				self.board.append(Pieza(self.fichas_vacias,self.fichas_vacias))
+	
+		self.board[3][3] = Pieza(self.negro, self.negro)
+		self.board[3][4] = Pieza(self.blanco, self.blanco)
+		self.board[4][3] = Pieza(self.blanco, self.blanco)
+		self.board[4][4] = Pieza(self.negro, self.negro)
+		
+		self.num_blancas = 2
+		self.num_negras = 2
 				
 				
 	def get_filas(self):

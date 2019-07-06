@@ -207,22 +207,23 @@ class Controlador(ControladorAbs):
 						
 				if active1:
 					if tipoEvento.key == pygame.K_BACKSPACE:
-						self.nombreIngresado1 = self.nombreIngresado1[:-1]
+						self.nombreIngresado1 = self.nombreIngresado1[:-1]		
 					else:
 						self.nombreIngresado1 += tipoEvento.unicode
 					# Re-render the text.
 					
 					self.interfaz.font_render(self.nombreIngresado1,1)
-						
+
 				if active2:
 					if tipoEvento.key == pygame.K_BACKSPACE:
 						self.nombreIngresado2 = self.nombreIngresado2[:-1]
 					else:
 						self.nombreIngresado2 += tipoEvento.unicode
-						# Re-render the text.
-					
-					self.interfaz.font_render(self.nombreIngresado2,2)
 						
+						# Re-render the text.
+
+					self.interfaz.font_render(self.nombreIngresado2,2)
+
 				
 			if tipoEvento.type ==  pygame.MOUSEBUTTONDOWN:
 				# If the user clicked on the input_box rect.

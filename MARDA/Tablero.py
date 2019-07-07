@@ -79,8 +79,7 @@ class Tablero(TableroAbs):
 		return self.columnas
 		
 
-	def get_tablero(self):
-				
+	def get_tablero(self):		
 		return self.board
 
 		

@@ -138,7 +138,7 @@ class Validador(ValidadorAbs):
 		return pos_validas
 
 
-	def get_estado_juego(self, turno, tablero): # VALIDADOR
+	def get_estado_juego(self, turno, tablero):
 		estado = [[0,0,0,0,0]]
 		estado[0][0] = tablero.get_num_piezas(1)
 		estado[0][1] = tablero.get_num_piezas(2)

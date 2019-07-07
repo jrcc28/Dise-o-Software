@@ -1,7 +1,7 @@
 from Interfaz import *
-from Juego import *
 from Jugador import Jugador
 from Pieza import Pieza
+from Validador import Validador
 import csv
 import pygame
 from ControladorAbs import ControladorAbs
@@ -10,13 +10,14 @@ from ControladorAbs import ControladorAbs
 
 class Controlador(ControladorAbs):
 	def __init__(self):
-		self.game = Juego()
 		self.interfaz = Interfaz(self)
+		self.validador = Validador()
+		self.tablero = Tablero(8,8) # Crea un tablero 8 x 8  
 		self.turno = 1
 
 		#se instancian los jugadores
-		self.jugador1 = Jugador(Pieza(1,1),"Jugador 1")
-		self.jugador2 = Jugador(Pieza(2,2),"Jugador 2")
+		self.jugador1 = Jugador(Pieza(1,1),"Jugador 1") # Jugador con piezas negras
+		self.jugador2 = Jugador(Pieza(2,2),"Jugador 2") # Jugador con piezas blancas
 		self.nombreIngresado2 = ""
 		self.nombreIngresado1 = ""
 		#posiciones del tablero y tamanos
@@ -31,7 +32,7 @@ class Controlador(ControladorAbs):
 		self.interfaz.game_menu()
 
 	def get_tablero(self):
-		return self.game.get_tablero()
+		return self.tablero.get_tablero()
 
 	def get_turno(self):
 		return self.turno
@@ -45,9 +46,9 @@ class Controlador(ControladorAbs):
 			for row in reader:
 				if count_lineas % 2!=0:
 					if count_info < 8 :
-						self.game.llenar_tablero(row,count_info)
+						self.tablero.llenar_tablero(row,count_info)
 					else:
-						self.turno=self.game.llenar_fichas(row)
+						self.turno=self.tablero.llenar_fichas(row)
 
 					count_info=count_info+1
 
@@ -58,11 +59,12 @@ class Controlador(ControladorAbs):
 		myFile = open(name, 'w')
 		with myFile:
 			writer = csv.writer(myFile)
-			writer.writerows(self.game.get_valores_tablero())
-			writer.writerows(self.game.get_estado_juego(self.turno))
+			writer.writerows(self.tablero.get_valores_tablero())
+			writer.writerows(self.validador.get_estado_juego(self.turno, self.tablero))
 
 	def reset(self):
-		self.game.clean_game()
+		self.tablero.limpiar_tablero()
+		self.validador.reset_validador()
 		self.turno=1
 		#se vuelven a crear los jugadores
 		self.jugador1 = Jugador(Pieza(1,1),"Jugador 1")
@@ -72,19 +74,19 @@ class Controlador(ControladorAbs):
 		pos_valida = self.convertir_pos(x,y)
 		#esto es para colocar alguna ficha en el tablero(matriz) debe ser una posicion valida
 		if self.turno==1 and pos_valida!=(-1,-1):#si el jugador es ficha negra
-			if self.game.set_ficha(pos_valida[0],pos_valida[1],1):#si se logro colocar la ficha
+			if self.validador.set_ficha(pos_valida[0], pos_valida[1], 1, self.tablero):#si se logro colocar la ficha
 				self.set_turno(2) # ahora pasa a ser la ficha blanca
-				self.game.cambiar_turno(2)
-				if not self.game.hay_movimientos_validos():
+				self.validador.cambiar_turno(2, self.tablero)
+				if not self.validador.hay_movimientos_validos(self.tablero):
 					self.set_turno(1)
-					self.game.cambiar_turno(1)
+					self.validador.cambiar_turno(1, self.tablero)
 		elif self.turno==2 and pos_valida!=(-1,-1):#si el jugador es ficha blanca
-			if self.game.set_ficha(pos_valida[0],pos_valida[1],2):#si se logro colocar la ficha
+			if self.validador.set_ficha(pos_valida[0], pos_valida[1], 2, self.tablero):#si se logro colocar la ficha
 				self.set_turno(1)
-				self.game.cambiar_turno(1)
-				if not self.game.hay_movimientos_validos():
+				self.validador.cambiar_turno(1, self.tablero)
+				if not self.validador.hay_movimientos_validos(self.tablero):
 					self.set_turno(2)
-					self.game.cambiar_turno(2)
+					self.validador.cambiar_turno(2, self.tablero)
 
 
 	def setNombreJugador1(self):
@@ -131,19 +133,19 @@ class Controlador(ControladorAbs):
 		
 	#busca la cantidad de piezas en el tablero de una pieza especifica
 	def get_num_piezas(self, pieza):
-		return self.game.get_num_piezas(pieza)
+		return self.tablero.get_num_piezas(pieza)
 		
 	def get_mover_negras(self):
-		return self.game.get_mover_negras()
+		return self.validador.get_mover_negras()
 
 	def get_mover_blancas(self):
-		return self.game.get_mover_blancas()
+		return self.validador.get_mover_blancas()
 		
 	def get_filas(self):
-		return self.game.get_filas()
+		return self.tablero.get_filas()
 		
 	def get_columnas(self):
-		return self.game.get_columnas()
+		return self.tablero.get_columnas()
 
 	def convertir_pos(self,mouse_x ,mouse_y ):
 		# click was out of board, ignores

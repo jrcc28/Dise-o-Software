@@ -38,10 +38,10 @@ class Tablero(TableroAbs):
 #busca la cantidad de piezas en el tablero de una pieza especifica
 	def get_num_piezas(self, pieza):
 		num_piezas=0
-		for i in range((self.filas - 1)):
-			for j in range((self.columnas - 1)):
-				if self.board[i][j].get_tipo()== pieza:
-					num_piezas=num_piezas+1
+		for i in range(self.filas):
+			for j in range(self.columnas):
+				if self.board[i][j].get_color() == pieza:
+					num_piezas+=1
 		
 		return num_piezas
 		
@@ -60,9 +60,8 @@ class Tablero(TableroAbs):
 #restea el tablero a estado inicial
 	def limpiar_tablero(self):
 		for i in range(self.filas):
-			self.board.append([])
 			for j in range(self.columnas):
-				self.board.append(Pieza(self.fichas_vacias,self.fichas_vacias))
+				self.board[i][j]=Pieza(self.fichas_vacias,self.fichas_vacias)
 	
 		self.board[3][3] = Pieza(self.negro, self.negro)
 		self.board[3][4] = Pieza(self.blanco, self.blanco)
@@ -81,7 +80,9 @@ class Tablero(TableroAbs):
 		
 
 	def get_tablero(self):
+				
 		return self.board
+
 		
 	def get_fichas_totales(self):
 		return self.fichas_totales

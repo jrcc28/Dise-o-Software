@@ -28,6 +28,8 @@ class Validador(ValidadorAbs):
 	def cambiar_turno(self, valor, tablero):
 		num_blancas = tablero.get_num_piezas(1)
 		num_negras = tablero.get_num_piezas(2)
+		print(num_negras)
+		print(num_blancas)
 		if self.get_movimientos_permitidos(valor, tablero)==[] or num_blancas + num_negras==tablero.get_fichas_totales():
 			if valor==1:
 				self.mover_negra=False

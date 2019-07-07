@@ -33,6 +33,9 @@ class Controlador(ControladorAbs):
 	def get_tablero(self):
 		return self.game.get_tablero()
 
+	def get_turno(self):
+		return self.turno
+
     #por el momento solo csv
 	def leer_archivo(self, name):
 		count_info=0
@@ -86,14 +89,17 @@ class Controlador(ControladorAbs):
 
 	def setNombreJugador1(self):
 		self.jugador1.set_nombre(self.nombreIngresado1)
+		
 
 	def getNombreJugador1(self):
+		self.jugador1.set_nombre(self.nombreIngresado1)
 		return self.jugador1.get_nombre()
 
 	def setNombreJugador2(self):
 		self.jugador2.set_nombre(self.nombreIngresado2)
 
 	def getNombreJugador2(self):
+		self.jugador2.set_nombre(self.nombreIngresado2)
 		return self.jugador2.get_nombre()
 
 	def get_reglas(self):
@@ -234,6 +240,7 @@ class Controlador(ControladorAbs):
 				if self.interfaz.click_box(tipoEvento.pos,2):
 					# Toggle the active variable.
 					return 3
+
 
 		return True
 		

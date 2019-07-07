@@ -138,11 +138,14 @@ class Interfaz:
 			text = "Turno de "
 			ganador = "Gano "
 			if seguir:
+				
 				if self.controlador.get_turno() == 1:
+					
 					text += self.controlador.getNombreJugador1()
 					self.message_display(text,590,450,self.white,20)
 				elif self.controlador.get_turno() == 2:
 					text += self.controlador.getNombreJugador2()
+					
 					self.message_display(text,590,450,self.white,20)
 			else:
 				if self.controlador.get_num_piezas(1)> self.controlador.get_num_piezas(2):
@@ -161,7 +164,7 @@ class Interfaz:
 
 			#se muestra el tablero
 			self.win.blit(self.board,(30,30))
-			print("Tablero mostrado")
+			#print("Tablero mostrado")
 
 			#colocar fichas sobre tablero(imagen
 			#print(self.controlador.get_tablero())

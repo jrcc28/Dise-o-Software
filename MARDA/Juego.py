@@ -6,12 +6,6 @@ class Juego:
 		self.tablero = Tablero(8, 8)
 		self.validador = Validador()
 
-	def get_num_negras(self):
-		return self.tablero.get_num_negras()
-
-	def get_num_blancas(self):
-		return self.tablero.get_num_blancas()
-
 	def get_mover_negras(self):
 		return self.validador.get_mover_negras()
 

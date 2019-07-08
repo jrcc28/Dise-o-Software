@@ -4,8 +4,9 @@ import time
 import pygame
 from Pieza import Pieza
 from Controlador import Controlador
+from InterfazAbs import InterfazAbs
 
-class Interfaz:
+class Interfaz(InterfazAbs):
 	def __init__(self, controlador):
 		self.controlador = controlador
 
@@ -88,15 +89,11 @@ class Interfaz:
 	def salir(self):
 		return False
 
-	
-
 	def quit(self):
 		pygame.quit()
 
 	def blit(self):
 		self.win.blit(self.fondo,(0,0))
-
-
 
 	def ver_reglas(self):
 		reglas=True

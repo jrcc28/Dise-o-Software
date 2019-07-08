@@ -2,6 +2,7 @@ from Interfaz import *
 from Jugador import Jugador
 from Pieza import Pieza
 from Validador import Validador
+from Tablero import Tablero
 import csv
 import pygame
 from ControladorAbs import ControladorAbs

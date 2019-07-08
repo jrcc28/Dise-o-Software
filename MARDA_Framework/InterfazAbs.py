@@ -26,11 +26,6 @@ class InterfazAbs(ABC):
 	def text_objects(self,text, font,color):
 		pass
 
-	def font_render(self, name,option):
-		pass
-
-	def click_box(self, pos,option):
-		pass
 
 	def button(self,msg,x,y,w,h,color1,color2,color3, action=None):
 		pass

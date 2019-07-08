@@ -27,11 +27,11 @@ class Controlador(ControladorAbs):
 		self.nombreIngresado1 = ""
 		#posiciones del tablero y tamanos
 		#dichas variables para el tablero y distintos aspectos de dicho que se pueden cambiar a como desee el usuario del framework
-		self.espacioVentanaTablero = 50
-		self.cuadro = 50
-		self.borde = 20
-		self.tableroPos = 30
-		self.BOARD_SIZE = 400
+		self.espacioVentanaTablero = 
+		self.cuadro = 
+		self.borde = 
+		self.tableroPos = 
+		self.BOARD_SIZE = 
 
 
 	def start(self):
@@ -144,6 +144,7 @@ class Controlador(ControladorAbs):
 					self.interfaz.quit()
 		return True
 
+	
 	#TODOS DEN TENER UNA OPCION QUE MUESTRE TABLERO
 	def eventos_tablero(self):
 		for tipoEvento in pygame.event.get():
@@ -179,37 +180,6 @@ class Controlador(ControladorAbs):
 						
 				if tipoEvento.key== pygame.K_RETURN:
 					self.interfaz.guardar_jugadores()
-					
-						
-				if active1:
-					if tipoEvento.key == pygame.K_BACKSPACE:
-						self.nombreIngresado1 = self.nombreIngresado1[:-1]		
-					else:
-						self.nombreIngresado1 += tipoEvento.unicode
-					# Re-render the text.
-					
-					self.interfaz.font_render(self.nombreIngresado1,1)
-
-				if active2:
-					if tipoEvento.key == pygame.K_BACKSPACE:
-						self.nombreIngresado2 = self.nombreIngresado2[:-1]
-					else:
-						self.nombreIngresado2 += tipoEvento.unicode
-						
-						# Re-render the text.
-
-					self.interfaz.font_render(self.nombreIngresado2,2)
-
-				
-			if tipoEvento.type ==  pygame.MOUSEBUTTONDOWN:
-				# If the user clicked on the input_box rect.
-				if self.interfaz.click_box(tipoEvento.pos,1):
-				# Toggle the active variable.
-					return 2
-				# If the user clicked on the input_box rect.
-				if self.interfaz.click_box(tipoEvento.pos,2):
-					# Toggle the active variable.
-					return 3
 
 
 		return True

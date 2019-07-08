@@ -63,22 +63,3 @@ class Tablero(TableroAbs):
 		
 	def get_fichas_validas(self):
 		return self.fichas_validas
-		
-# #retorna el tablero pero no en piezas si no en valores int que definen el tipo de pieza	
-# 	def get_valores_tablero(self):
-# 		tablero_valores=[]
-		
-# 		for i in range(self.filas):
-# 			tablero_valores.append([])
-# 			for j in range(self.columnas):
-# 				tablero_valores.append(self.board[i][j].get_tipo())
-		
-		
-			
-# 		return tablero_valores
-
-# #llena el tablero cuando se hacer cargar
-# 	def llenar_tablero(self,row,i):
-# 		for i in range(self.filas):
-# 			self.board[i][j].set_color(row[j])
-# 			self.board[i][j].set_tipo(row[j])

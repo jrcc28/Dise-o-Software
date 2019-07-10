@@ -1,21 +1,27 @@
 from abc import ABC, abstractmethod
-"""
-Clase jugador abstracto
-"""
+
 class JugadorAbs(ABC):
-	"""metodo constructor"""
+	"""
+	Clase Jugador abstracto
+	"""
+
 	def __init__(self,pieza,nombre):
+		"""Metodo constructor de la clase jugador."""
 		self.pieza=pieza
 		self.nombre=nombre
-	"""setea el nombre"""
+
 	def set_nombre(self,nombre):
+		"""Metodo que setea el nombre del jugador."""
 		self.nombre=nombre
-	"""retorna nombre"""
+
 	def get_nombre(self):
+		"""Metodo que retorna nombre del jugador."""
 		return self.nombre
-	"""setea pieza"""
+
 	def set_pieza(self, pieza):
+		"""Metodo que setea pieza del jugador."""
 		self.pieza=pieza
-	"""retorna pieza del jugador"""
+
 	def get_pieza(self):
+		"""Metodo que retorna pieza del jugador."""
 		return self.pieza

@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module TableroAbs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>TableroAbs</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/jrcc/Desktop/git/Diseno_Soft/Software-Design/MARDA_Framework_Final/TableroAbs.py">/home/jrcc/Desktop/git/Diseno_Soft/Software-Design/MARDA_Framework_Final/TableroAbs.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="abc.html#ABC">abc.ABC</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="TableroAbs.html#Tablero">Tablero</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="Tablero">class <strong>Tablero</strong></a>(<a href="abc.html#ABC">abc.ABC</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Clase&nbsp;<a href="#Tablero">Tablero</a>&nbsp;abstracto.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="TableroAbs.html#Tablero">Tablero</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="Tablero-__init__"><strong>__init__</strong></a>(self, filas, columnas)</dt><dd><tt>Constructor&nbsp;de&nbsp;la&nbsp;clase&nbsp;tablero.<br>
+Parametros:<br>
+Filas&nbsp;=&nbsp;cantidad&nbsp;de&nbsp;filas&nbsp;que&nbsp;va&nbsp;a&nbsp;contener&nbsp;el&nbsp;tablero.<br>
+Columnas&nbsp;=&nbsp;cantidad&nbsp;de&nbsp;columnas&nbsp;que&nbsp;va&nbsp;a&nbsp;contener&nbsp;el&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_columnas"><strong>get_columnas</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;la&nbsp;cantidad&nbsp;de&nbsp;columnas&nbsp;del&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_fichas_invalidas"><strong>get_fichas_invalidas</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;la&nbsp;cantidad&nbsp;de&nbsp;fichas&nbsp;invalidadas&nbsp;sobre&nbsp;el&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_fichas_totales"><strong>get_fichas_totales</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;la&nbsp;cantidad&nbsp;de&nbsp;fichas&nbsp;totales&nbsp;sobre&nbsp;el&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_fichas_vacias"><strong>get_fichas_vacias</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;la&nbsp;cantidad&nbsp;de&nbsp;fichas&nbsp;vacias&nbsp;sobre&nbsp;el&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_fichas_validas"><strong>get_fichas_validas</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;la&nbsp;cantidad&nbsp;de&nbsp;fichas&nbsp;validas&nbsp;sobre&nbsp;el&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_filas"><strong>get_filas</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;la&nbsp;cantidad&nbsp;de&nbsp;filas&nbsp;del&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_num_piezas"><strong>get_num_piezas</strong></a>(self, pieza)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;la&nbsp;cantidad&nbsp;de&nbsp;un&nbsp;tipo&nbsp;de&nbsp;piezas&nbsp;existentes&nbsp;sobre&nbsp;el&nbsp;tablero.<br>
+Parametros:<br>
+pieza&nbsp;=&nbsp;tipo&nbsp;de&nbsp;pieza&nbsp;a&nbsp;ser&nbsp;buscada&nbsp;sobre&nbsp;el&nbsp;tablero.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-get_tablero"><strong>get_tablero</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;retorna&nbsp;el&nbsp;tablero&nbsp;de&nbsp;la&nbsp;clase.</tt></dd></dl>
+
+<dl><dt><a name="Tablero-limpiar_tablero"><strong>limpiar_tablero</strong></a>(self)</dt><dd><tt>Metodo&nbsp;que&nbsp;reinicia&nbsp;el&nbsp;tablero&nbsp;a&nbsp;un&nbsp;estado&nbsp;inicial.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<hr>
+Data descriptors inherited from <a href="abc.html#ABC">abc.ABC</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>

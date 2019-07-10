@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module ValidadorAbs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>ValidadorAbs</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/jrcc/Desktop/git/Diseno_Soft/Software-Design/MARDA_Framework_Final/ValidadorAbs.py">/home/jrcc/Desktop/git/Diseno_Soft/Software-Design/MARDA_Framework_Final/ValidadorAbs.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="abc.html#ABC">abc.ABC</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="ValidadorAbs.html#ValidadorAbs">ValidadorAbs</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ValidadorAbs">class <strong>ValidadorAbs</strong></a>(<a href="abc.html#ABC">abc.ABC</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt>Clase&nbsp;Validador&nbsp;abstracto.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="ValidadorAbs.html#ValidadorAbs">ValidadorAbs</a></dd>
+<dd><a href="abc.html#ABC">abc.ABC</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ValidadorAbs-__init__"><strong>__init__</strong></a>(self)</dt><dd><tt>Constructor&nbsp;de&nbsp;la&nbsp;clase&nbsp;Validador.</tt></dd></dl>
+
+<dl><dt><a name="ValidadorAbs-buscar_pos_validas"><strong>buscar_pos_validas</strong></a>(self, i, j, fila, columna, color, tablero)</dt><dd><tt>Metodo&nbsp;que&nbsp;busca&nbsp;posiciones&nbsp;validas&nbsp;dentro&nbsp;del&nbsp;tablero&nbsp;segun&nbsp;un&nbsp;color&nbsp;o&nbsp;valor.<br>
+Parametros:<br>
+i&nbsp;=&nbsp;fila&nbsp;del&nbsp;tablero.<br>
+j&nbsp;=&nbsp;columna&nbsp;del&nbsp;tablero.<br>
+color&nbsp;=&nbsp;color&nbsp;a&nbsp;verificar&nbsp;las&nbsp;posiciones&nbsp;validas.<br>
+tablero&nbsp;=&nbsp;tablero&nbsp;donde&nbsp;se&nbsp;realiza&nbsp;la&nbsp;validacion.</tt></dd></dl>
+
+<dl><dt><a name="ValidadorAbs-cambiar_turno"><strong>cambiar_turno</strong></a>(self, valor, tablero)</dt><dd><tt>Metodo&nbsp;para&nbsp;cambiar&nbsp;el&nbsp;turno&nbsp;de&nbsp;jugador.<br>
+Parametros:<br>
+Valor&nbsp;=&nbsp;valor&nbsp;a&nbsp;cambiar.<br>
+Tablero&nbsp;=&nbsp;tablero&nbsp;donde&nbsp;se&nbsp;realiza&nbsp;la&nbsp;validacion&nbsp;de&nbsp;cambio&nbsp;de&nbsp;turno.<br>
+Retorna:<br>
+Verdadero&nbsp;si&nbsp;no&nbsp;cambio&nbsp;turno.<br>
+Falso&nbsp;si&nbsp;cambio&nbsp;turno.</tt></dd></dl>
+
+<dl><dt><a name="ValidadorAbs-get_movimientos_permitidos"><strong>get_movimientos_permitidos</strong></a>(self, pieza, tablero)</dt><dd><tt>Este&nbsp;metodo&nbsp;busca&nbsp;movimientos&nbsp;permitidos&nbsp;segun&nbsp;el&nbsp;turno&nbsp;actual,<br>
+un&nbsp;tipo&nbsp;de&nbsp;pieza<br>
+y&nbsp;el&nbsp;estado&nbsp;actual&nbsp;del&nbsp;tablero.<br>
+Parametros:<br>
+Pieza&nbsp;=&nbsp;tipo&nbsp;de&nbsp;pieza&nbsp;a&nbsp;la&nbsp;cual&nbsp;se&nbsp;verifica&nbsp;los&nbsp;movimientos&nbsp;permitidos.<br>
+Tablero&nbsp;=&nbsp;tablero&nbsp;donde&nbsp;se&nbsp;realiza&nbsp;la&nbsp;comprobacion.<br>
+Retorna:<br>
+Un&nbsp;vector&nbsp;de&nbsp;pares&nbsp;con&nbsp;las&nbsp;posiciones&nbsp;permitidas.&nbsp;En&nbsp;caso&nbsp;de&nbsp;que&nbsp;no&nbsp;existan<br>
+retorna&nbsp;un&nbsp;vector&nbsp;vacio.</tt></dd></dl>
+
+<dl><dt><a name="ValidadorAbs-hay_movimientos_validos"><strong>hay_movimientos_validos</strong></a>(self, tablero)</dt><dd><tt>Metodo&nbsp;que&nbsp;verifica&nbsp;si&nbsp;existen&nbsp;posiciones&nbsp;validas&nbsp;o&nbsp;posibles&nbsp;para&nbsp;jugar&nbsp;en&nbsp;el&nbsp;tablero.<br>
+Parametros:<br>
+Tablero&nbsp;=&nbsp;tablero&nbsp;donde&nbsp;se&nbsp;realiza&nbsp;la&nbsp;comprobacion&nbsp;de&nbsp;posicion&nbsp;valida.<br>
+Retorna:<br>
+Verdadero&nbsp;si&nbsp;existen&nbsp;posiciones&nbsp;validas.<br>
+False&nbsp;si&nbsp;no&nbsp;existen&nbsp;posiciones&nbsp;validas.</tt></dd></dl>
+
+<dl><dt><a name="ValidadorAbs-reset_validador"><strong>reset_validador</strong></a>(self)</dt><dd><tt>Este&nbsp;metodo&nbsp;resetea&nbsp;los&nbsp;valores&nbsp;del&nbsp;validador,&nbsp;para&nbsp;que&nbsp;vuelva&nbsp;a&nbsp;iniciar.</tt></dd></dl>
+
+<dl><dt><a name="ValidadorAbs-set_ficha"><strong>set_ficha</strong></a>(self, fila, columna, valor, tablero)</dt><dd><tt>Este&nbsp;metodo&nbsp;coloca&nbsp;una&nbsp;ficha&nbsp;en&nbsp;el&nbsp;tablero,&nbsp;solo&nbsp;cuando&nbsp;es&nbsp;una&nbsp;jugada&nbsp;o<br>
+posicion&nbsp;valida.<br>
+Parametros:<br>
+Fila&nbsp;=&nbsp;numero&nbsp;de&nbsp;fila&nbsp;donde&nbsp;se&nbsp;intenta&nbsp;poner&nbsp;la&nbsp;pieza.<br>
+Columna&nbsp;=&nbsp;numero&nbsp;de&nbsp;columna&nbsp;donde&nbsp;se&nbsp;intenta&nbsp;poner&nbsp;la&nbsp;pieza.<br>
+Valor&nbsp;=&nbsp;valor&nbsp;que&nbsp;se&nbsp;va&nbsp;a&nbsp;colocar&nbsp;en&nbsp;la&nbsp;posicion.<br>
+Tablero&nbsp;=&nbsp;tablero&nbsp;donde&nbsp;se&nbsp;va&nbsp;a&nbsp;realizar&nbsp;la&nbsp;validacion.<br>
+Retorna:<br>
+Verdadero&nbsp;si&nbsp;se&nbsp;coloco&nbsp;la&nbsp;ficha.<br>
+Falso&nbsp;si&nbsp;no&nbsp;se&nbsp;coloco&nbsp;la&nbsp;ficha.</tt></dd></dl>
+
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<hr>
+Data descriptors inherited from <a href="abc.html#ABC">abc.ABC</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
